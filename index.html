@@ -2058,7 +2058,8 @@ Road to CC · Predator · ALGS 🔴`;
       const saved = JSON.parse(localStorage.getItem('legit_auth') || 'null');
 
       // Save to localStorage whenever we get data from OAuth
-      if (status && user) localStorage.setItem('legit_auth', JSON.stringify({ status, user }));
+      const uid = params.get('uid');
+      if (status && user) localStorage.setItem('legit_auth', JSON.stringify({ status, user, uid: uid || saved?.uid }));
 
       const active = status ? { status, user } : saved;
 
@@ -2131,6 +2132,20 @@ Road to CC · Predator · ALGS 🔴`;
       if (!cfg.showForm) {
         document.getElementById('applyForm').style.display = 'none';
         document.getElementById('discordLoginBox').style.display = 'none';
+      }
+
+      // Fetch fresh status from bot in background
+      if (saved?.uid) {
+        fetch(`${BOT_URL}/api/status/${saved.uid}`)
+          .then(r => r.json())
+          .then(({ status: fresh }) => {
+            if (fresh && fresh !== 'none' && fresh !== saved.status) {
+              saved.status = fresh;
+              localStorage.setItem('legit_auth', JSON.stringify(saved));
+              location.reload();
+            }
+          })
+          .catch(() => {});
       }
     })();
   </script>
