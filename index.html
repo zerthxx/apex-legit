@@ -2139,8 +2139,8 @@ Road to CC · Predator · ALGS 🔴`;
         fetch(`${BOT_URL}/api/status/${saved.uid}`)
           .then(r => r.json())
           .then(({ status: fresh }) => {
-            if (fresh && fresh !== 'none' && fresh !== saved.status) {
-              saved.status = fresh;
+            if (fresh !== saved.status) {
+              saved.status = fresh === 'none' ? 'none' : fresh;
               localStorage.setItem('legit_auth', JSON.stringify(saved));
               location.reload();
             }
