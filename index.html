@@ -1104,6 +1104,70 @@
       color: #ff6b6b;
     }
 
+    /* ── STATUS PANEL ── */
+    #statusPanel {
+      display: none;
+      text-align: center;
+      padding: 48px 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 40px;
+    }
+
+    #statusPanel.visible { display: block; }
+
+    .status-icon { font-size: 3rem; margin-bottom: 16px; }
+
+    .status-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: var(--radius);
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+
+    .status-tag.accepted { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+    .status-tag.pending  { background: rgba(251,191,36,0.1);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .status-tag.rejected { background: rgba(255,0,0,0.08);    color: #ff6b6b; border: 1px solid rgba(255,0,0,0.2); }
+
+    .status-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 4px;
+      margin-bottom: 10px;
+    }
+
+    .status-sub {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .btn-discord-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #5865F2;
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-discord-login:hover {
+      background: #4752c4;
+      box-shadow: 0 0 20px rgba(88,101,242,0.4);
+    }
+
     /* ── LOGO VIDEO ── */
     #logo-video-section {
       position: relative;
@@ -1524,6 +1588,15 @@
   <!-- Apply -->
   <section id="apply">
     <div class="apply-container">
+      <!-- Status Panel (shown after Discord login) -->
+      <div id="statusPanel">
+        <div class="status-icon" id="statusIcon"></div>
+        <div class="status-tag" id="statusTag"></div>
+        <h3 class="status-title" id="statusTitle"></h3>
+        <p class="status-sub" id="statusSub"></p>
+        <a id="statusAction" href="#" style="display:none"></a>
+      </div>
+
       <div class="apply-header">
         <span class="section-label">Join LEGIT</span>
         <h2 class="section-title">Apply Now</h2>
@@ -1531,6 +1604,15 @@
           applicants will be reviewed. <a href="https://discord.gg/YPsj22FFT" target="_blank"
             style="color:var(--accent);">Join our Discord first</a> — then apply below.</p>
       </div>
+      <!-- Discord Login -->
+      <div id="discordLoginBox" style="text-align:center; margin-bottom:32px;">
+        <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:14px;">Already applied? Check your status:</p>
+        <a id="discordLoginBtn" class="btn-discord-login" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963a.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z"/></svg>
+          Login with Discord
+        </a>
+      </div>
+
       <form class="apply-form-el" id="applyForm">
         <div class="form-group">
           <label>EA / Origin Username *</label>
@@ -1888,6 +1970,84 @@ Road to CC · Predator · ALGS 🔴`;
         setTimeout(() => b.textContent = 'Copy Text', 2000);
       });
     }
+
+    // ── DISCORD LOGIN & STATUS ──
+    const BOT_URL = 'https://discord-bot-production-fcdc.up.railway.app';
+
+    document.getElementById('discordLoginBtn').href = `${BOT_URL}/auth/discord`;
+
+    (function checkStatus() {
+      const params = new URLSearchParams(location.search);
+      const status = params.get('status');
+      const user = params.get('user');
+
+      // Also check localStorage for returning users
+      const saved = JSON.parse(localStorage.getItem('legit_auth') || 'null');
+      const active = status ? { status, user } : saved;
+
+      if (!active || !active.status || active.status === 'none') return;
+
+      // Save to localStorage
+      if (status) localStorage.setItem('legit_auth', JSON.stringify({ status, user }));
+
+      // Clean URL
+      history.replaceState({}, '', location.pathname + location.hash);
+
+      const panel = document.getElementById('statusPanel');
+      const icon  = document.getElementById('statusIcon');
+      const tag   = document.getElementById('statusTag');
+      const title = document.getElementById('statusTitle');
+      const sub   = document.getElementById('statusSub');
+      const action = document.getElementById('statusAction');
+
+      panel.classList.add('visible');
+
+      const configs = {
+        accepted: {
+          icon: '✅', tagClass: 'accepted', tagText: 'ACCEPTED',
+          titleText: 'Welcome to LEGIT',
+          subText: 'Your application has been accepted. Check your Discord DMs for next steps.',
+          actionText: 'Join Discord', actionHref: 'https://discord.gg/YPsj22FFT', showForm: false
+        },
+        pending: {
+          icon: '⏳', tagClass: 'pending', tagText: 'UNDER REVIEW',
+          titleText: 'Application Received',
+          subText: 'Your application is being reviewed. We\'ll reach out via Discord once a decision has been made.',
+          actionText: null, showForm: false
+        },
+        rejected: {
+          icon: '❌', tagClass: 'rejected', tagText: 'NOT ACCEPTED',
+          titleText: 'Application Not Accepted',
+          subText: 'Unfortunately your application was not accepted at this time. You are welcome to apply again below.',
+          actionText: null, showForm: true
+        },
+        error: {
+          icon: '⚠️', tagClass: 'rejected', tagText: 'ERROR',
+          titleText: 'Something went wrong',
+          subText: 'Please try logging in again.',
+          actionText: null, showForm: true
+        }
+      };
+
+      const cfg = configs[active.status] || configs.error;
+      icon.textContent = cfg.icon;
+      tag.textContent = cfg.tagText;
+      tag.className = `status-tag ${cfg.tagClass}`;
+      title.textContent = cfg.titleText;
+      sub.textContent = cfg.subText;
+
+      if (cfg.actionText) {
+        action.textContent = cfg.actionText;
+        action.href = cfg.actionHref;
+        action.className = 'btn-discord-login';
+        action.style.display = 'inline-flex';
+      }
+
+      if (!cfg.showForm) {
+        document.getElementById('applyForm').style.display = 'none';
+        document.getElementById('discordLoginBox').style.display = 'none';
+      }
+    })();
   </script>
 </body>
 
