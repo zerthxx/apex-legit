@@ -2052,7 +2052,10 @@ Road to CC · Predator · ALGS 🔴`;
       if (status) history.replaceState({}, '', location.pathname + location.hash);
 
       // Always show username in nav if logged in
-      if (active?.user) updateNavAuth(active.user);
+      if (active?.user) {
+        updateNavAuth(active.user);
+        document.getElementById('discordLoginBox').style.display = 'none';
+      }
 
       if (!active || !active.status || active.status === 'none') return;
 
