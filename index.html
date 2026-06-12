@@ -2041,17 +2041,20 @@ Road to CC · Predator · ALGS 🔴`;
       const status = params.get('status');
       const user = params.get('user');
 
-      // Also check localStorage for returning users
       const saved = JSON.parse(localStorage.getItem('legit_auth') || 'null');
+
+      // Save to localStorage whenever we get data from OAuth
+      if (status && user) localStorage.setItem('legit_auth', JSON.stringify({ status, user }));
+
       const active = status ? { status, user } : saved;
 
-      if (!active || !active.status || active.status === 'none') return;
-
-      // Save to localStorage
-      if (status) localStorage.setItem('legit_auth', JSON.stringify({ status, user }));
-
       // Clean URL
-      history.replaceState({}, '', location.pathname + location.hash);
+      if (status) history.replaceState({}, '', location.pathname + location.hash);
+
+      // Always show username in nav if logged in
+      if (active?.user) updateNavAuth(active.user);
+
+      if (!active || !active.status || active.status === 'none') return;
 
       const panel = document.getElementById('statusPanel');
       const icon  = document.getElementById('statusIcon');
@@ -2107,8 +2110,6 @@ Road to CC · Predator · ALGS 🔴`;
         document.getElementById('applyForm').style.display = 'none';
         document.getElementById('discordLoginBox').style.display = 'none';
       }
-
-      if (active.user) updateNavAuth(active.user);
     })();
   </script>
 </body>
