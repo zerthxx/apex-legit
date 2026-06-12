@@ -1933,6 +1933,20 @@
             showToast('✓ Application sent to Discord!', 'success');
             this.reset();
             document.getElementById('fileList').innerHTML = '';
+            // Save pending status so user can't reapply
+            const auth = JSON.parse(localStorage.getItem('legit_auth') || 'null');
+            if (auth?.user) {
+              auth.status = 'pending';
+              localStorage.setItem('legit_auth', JSON.stringify(auth));
+            }
+            // Hide form and show pending panel
+            document.getElementById('applyForm').style.display = 'none';
+            document.getElementById('statusIcon').textContent = '⏳';
+            const t = document.getElementById('statusTag');
+            t.textContent = 'UNDER REVIEW'; t.className = 'status-tag pending';
+            document.getElementById('statusTitle').textContent = 'Application Received';
+            document.getElementById('statusSub').textContent = "Your application is being reviewed. We'll reach out via Discord once a decision has been made.";
+            document.getElementById('statusPanel').classList.add('visible');
           } else {
             showToast('✗ Failed to send — try again', 'error');
           }
