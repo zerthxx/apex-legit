@@ -1449,7 +1449,8 @@
   <section id="hero">
     <div class="hero-video-bg">
       <iframe
-        src="https://www.youtube.com/embed/cVa60kOyvnk?autoplay=1&mute=1&loop=1&playlist=cVa60kOyvnk&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playsinline=1"
+        id="heroBgVideo"
+        data-src="https://www.youtube.com/embed/cVa60kOyvnk?autoplay=1&mute=1&loop=1&playlist=cVa60kOyvnk&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playsinline=1"
         allow="autoplay; encrypted-media"
         allowfullscreen>
       </iframe>
@@ -1503,7 +1504,7 @@
 
   <!-- Logo Video -->
   <section id="logo-video-section">
-    <video autoplay muted loop playsinline>
+    <video autoplay muted loop playsinline preload="none">
       <source src="LEGIT video.mp4" type="video/mp4">
     </video>
   </section>
@@ -2150,6 +2151,24 @@ Road to CC · Predator · ALGS 🔴`;
           .catch(() => {});
       }
     })();
+
+    // ── VIDEO PERFORMANCE ──
+    const slowConn = navigator.connection &&
+      (navigator.connection.saveData ||
+       ['slow-2g', '2g'].includes(navigator.connection.effectiveType));
+
+    if (slowConn) {
+      const heroBg = document.querySelector('.hero-video-bg');
+      if (heroBg) heroBg.style.display = 'none';
+      const logoVid = document.querySelector('#logo-video-section video');
+      if (logoVid) logoVid.style.display = 'none';
+      hideLoader();
+    } else {
+      setTimeout(() => {
+        const iframe = document.getElementById('heroBgVideo');
+        if (iframe) iframe.src = iframe.dataset.src;
+      }, 500);
+    }
   </script>
 </body>
 
