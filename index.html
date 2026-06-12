@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGIT — Apex Legends Competitive Clan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --accent: #FF0000;
+      --accent-rgb: 255, 0, 0;
+      --secondary: #0070F3;
+      --secondary-rgb: 0, 112, 243;
+      --bg: #151616;
+      --text: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.55);
+      --border: rgba(255, 255, 255, 0.07);
+      --radius: 4px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', Arial, sans-serif;
+      font-size: 18px;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #000;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--accent), #880000);
+      border-radius: 3px;
+    }
+
+    /* ── STARSCAPE ── */
+    #starscape {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader-logo {
+      width: 100px;
+      margin-bottom: 28px;
+      filter: drop-shadow(0 0 24px rgba(var(--accent-rgb), 0.5));
+    }
+
+    .loader-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .loader-bar-track {
+      width: 200px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .loader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.9);
+    }
+
+    /* ── SCROLL PROGRESS ── */
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #ff5555);
+      z-index: 10000;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 6px rgba(var(--accent-rgb), 0.8);
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 12px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-inner {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #navbar.nav-scrolled .nav-inner {
+      max-width: 860px;
+      background: rgba(21, 22, 22, 0.9);
+      border: 1px solid rgba(var(--accent-rgb), 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      padding: 10px 28px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 34px;
+    }
+
+    .nav-logo-text {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+      color: var(--text);
+    }
+
+    .nav-logo-text span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #000 !important;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      font-weight: 700 !important;
+      transition: box-shadow 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.5) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-video-bg iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100vh;
+      min-width: 177.77vh;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      border: none;
+    }
+
+    .hero-video-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(to bottom,
+          rgba(21, 22, 22, 0.75) 0%,
+          rgba(21, 22, 22, 0.60) 40%,
+          rgba(21, 22, 22, 0.85) 100%);
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background-image:
+        linear-gradient(rgba(255, 0, 0, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 900px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(var(--accent-rgb), 0.35);
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(90px, 16vw, 180px);
+      line-height: 0.88;
+      letter-spacing: 10px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 0 2px 40px rgba(0, 0, 0, 0.9), 0 0 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-tag {
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      font-weight: 600;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9);
+    }
+
+    .hero-subtitle span {
+      color: var(--accent);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 15px 38px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 0 24px rgba(var(--accent-rgb), 0.3);
+      transition: all 0.25s ease;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.6);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      padding: 15px 38px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(var(--secondary-rgb), 0.5);
+      box-shadow: 0 0 20px rgba(var(--secondary-rgb), 0.2);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    .scroll-arrow {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.7), transparent);
+      animation: scrollPulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.35;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+
+    /* ── SHARED SECTION STYLES ── */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* ── STATS ── */
+    #stats {
+      position: relative;
+      z-index: 1;
+      padding: clamp(40px, 8vw, 110px) clamp(16px, 5vw, 40px);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .stats-header {
+      margin-bottom: 64px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      padding: 32px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.02);
+      transition: border-color 0.3s;
+    }
+
+    .stat-item:hover {
+      border-color: rgba(var(--accent-rgb), 0.25);
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 3.2rem;
+      letter-spacing: 2px;
+      color: var(--accent);
+      display: block;
+      transition: text-shadow 0.3s;
+    }
+
+    .stat-number.counting {
+      text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.6);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      position: relative;
+      z-index: 1;
+      padding: clamp(40px, 7vw, 80px) clamp(16px, 5vw, 40px);
+      border-top: 1px solid var(--border);
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(var(--accent-rgb), 0.25);
+      transform: translateY(-4px);
+      background: rgba(var(--accent-rgb), 0.02);
+    }
+
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── REQUIREMENTS ── */
+    #requirements {
+      position: relative;
+      z-index: 1;
+      padding: clamp(40px, 7vw, 80px) clamp(16px, 5vw, 40px);
+      border-top: 1px solid var(--border);
+    }
+
+    .req-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .requirements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .req-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .req-card.required {
+      border-color: rgba(var(--accent-rgb), 0.18);
+    }
+
+    .req-card.preferred {
+      border-color: rgba(var(--secondary-rgb), 0.18);
+    }
+
+    .req-card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .required .dot {
+      background: var(--accent);
+    }
+
+    .preferred .dot {
+      background: var(--secondary);
+    }
+
+    .rejected .dot {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .req-list {
+      list-style: none;
+    }
+
+    .req-list li {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .req-list li:last-child {
+      border-bottom: none;
+    }
+
+    .req-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .required .req-list li::before {
+      background: var(--accent);
+    }
+
+    .preferred .req-list li::before {
+      background: var(--secondary);
+    }
+
+    .rejected .req-list li::before {
+      background: rgba(255, 80, 80, 0.35);
+    }
+
+    /* ── APPLY ── */
+    #apply {
+      position: relative;
+      z-index: 1;
+      padding: clamp(50px, 8vw, 100px) clamp(16px, 5vw, 40px);
+      border-top: 1px solid var(--border);
+    }
+
+    .apply-container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .apply-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .apply-form-el {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 13px 15px;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(var(--accent-rgb), 0.45);
+    }
+
+    .form-group select option {
+      background: #1a1b1b;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .file-upload-area {
+      border: 1px dashed rgba(var(--accent-rgb), 0.28);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: rgba(var(--accent-rgb), 0.02);
+    }
+
+    .file-upload-area:hover {
+      border-color: rgba(var(--accent-rgb), 0.55);
+      background: rgba(var(--accent-rgb), 0.04);
+    }
+
+    .file-upload-area input[type="file"] {
+      display: none;
+    }
+
+    .file-upload-text {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .file-upload-text span {
+      color: var(--accent);
+    }
+
+    #fileList {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--accent);
+      line-height: 1.6;
+    }
+
+    .btn-submit {
+      grid-column: 1 / -1;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 18px 40px;
+      border-radius: var(--radius);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.28);
+    }
+
+    .btn-submit:hover {
+      box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.55);
+      transform: translateY(-2px);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 10001;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.visible {
+      display: flex;
+    }
+
+    .modal {
+      background: #1a1b1b;
+      border: 1px solid rgba(var(--accent-rgb), 0.3);
+      border-radius: var(--radius);
+      padding: 36px;
+      max-width: 540px;
+      width: 100%;
+    }
+
+    .modal h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 3px;
+      margin-bottom: 6px;
+    }
+
+    .modal>p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .modal-app-text {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+      max-height: 220px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-buttons button,
+    .modal-buttons a {
+      flex: 1;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    .btn-discord {
+      background: #5865F2;
+      color: #fff;
+    }
+
+    .btn-discord:hover {
+      background: #4752c4;
+      box-shadow: 0 0 18px rgba(88, 101, 242, 0.4);
+    }
+
+    /* ── CTA ── */
+    #cta {
+      position: relative;
+      z-index: 1;
+      padding: clamp(60px, 10vw, 120px) clamp(16px, 5vw, 40px);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .orb-cta {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: var(--accent);
+      opacity: 0.035;
+      border-radius: 50%;
+      filter: blur(120px);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    #cta .section-title {
+      font-size: clamp(38px, 6vw, 70px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 56px 40px 36px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      height: 28px;
+      opacity: 0.75;
+    }
+
+    .footer-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 5px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .footer-copy {
+      color: rgba(255, 255, 255, 0.18);
+      font-size: 0.78rem;
+    }
+
+    /* ── STREAMS ── */
+    #streams {
+      position: relative;
+      z-index: 1;
+      padding: clamp(50px, 8vw, 100px) clamp(16px, 5vw, 40px);
+      text-align: center;
+    }
+
+    .streams-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 48px auto 0;
+    }
+
+    .stream-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(145, 70, 255, 0.18);
+      border-radius: 8px;
+      padding: 28px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stream-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top, rgba(145, 70, 255, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .stream-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(145, 70, 255, 0.45);
+      box-shadow: 0 8px 32px rgba(145, 70, 255, 0.15);
+    }
+
+    .stream-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(145, 70, 255, 0.5);
+      box-shadow: 0 0 18px rgba(145, 70, 255, 0.3);
+    }
+
+    .stream-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .stream-badge.offline {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stream-badge.live {
+      background: rgba(255, 0, 0, 0.12);
+      color: #ff4444;
+      border: 1px solid rgba(255, 0, 0, 0.3);
+    }
+
+    .stream-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .stream-badge.live .stream-badge-dot {
+      animation: pulseDot 1.4s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    .stream-name {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+      color: #fff;
+    }
+
+    .stream-watch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(145, 70, 255, 0.15);
+      border: 1px solid rgba(145, 70, 255, 0.4);
+      color: #c9a0ff;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .stream-watch-btn:hover {
+      background: rgba(145, 70, 255, 0.3);
+      border-color: rgba(145, 70, 255, 0.7);
+      color: #fff;
+      box-shadow: 0 0 16px rgba(145, 70, 255, 0.3);
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 99999;
+      padding: 14px 22px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #fff;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #toast.success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+    }
+
+    #toast.error {
+      background: rgba(255, 0, 0, 0.12);
+      border: 1px solid rgba(255, 0, 0, 0.35);
+      color: #ff6b6b;
+    }
+
+    /* ── LOGO VIDEO ── */
+    #logo-video-section {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    #logo-video-section video {
+      max-width: 480px;
+      width: 100%;
+      border-radius: var(--radius);
+    }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1001;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── MOBILE MENU ── */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(21, 22, 22, 0.98);
+      z-index: 998;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+
+    .nav-mobile.open {
+      display: flex;
+    }
+
+    .nav-mobile a {
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 5px;
+      transition: color 0.2s;
+    }
+
+    .nav-mobile a:hover {
+      color: var(--accent);
+    }
+
+    .nav-mobile .nav-mobile-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 12px 32px;
+      border-radius: var(--radius);
+    }
+
+    .nav-mobile-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .scroll-animation {
+        height: 350vh;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .streams-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .scroll-animation {
+        height: 280vh;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      #hero {
+        min-height: 100dvh;
+        align-items: flex-end;
+        padding-bottom: clamp(60px, 12vw, 100px);
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .requirements-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .apply-form-el {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+      }
+
+      .hero-tag {
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+        padding: 5px 10px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        padding: 14px 20px;
+      }
+
+      .nav-inner {
+        padding: 10px 18px;
+      }
+
+      #logo-video-section {
+        padding: 40px 20px;
+      }
+
+      footer {
+        padding: 40px 20px 28px;
+      }
+
+.streams-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="toast"></div>
+  <canvas id="starscape"></canvas>
+  <div id="scrollProgress"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <video class="loader-logo" autoplay muted playsinline id="loaderVideo">
+      <source src="LEGIT video.mp4" type="video/mp4">
+    </video>
+    <p class="loader-text">Loading</p>
+    <div class="loader-bar-track">
+      <div class="loader-bar-fill" id="loaderBar"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="LEGIT">
+        <span class="nav-logo-text"><span style="color:#9146FF">LE</span><span style="color:#72a2f5">G</span><span
+            style="color:#FF0000">IT</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Focus</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#streams">Streams</a>
+        <a href="#apply" class="nav-cta">Apply Now</a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="nav-mobile" id="navMobile">
+    <button class="nav-mobile-close" id="navMobileClose">✕</button>
+    <a href="#features">Focus</a>
+    <a href="#requirements">Requirements</a>
+    <a href="#streams">Streams</a>
+    <a href="#apply" class="nav-mobile-cta">Apply Now</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-video-bg">
+      <iframe
+        src="https://www.youtube.com/embed/cVa60kOyvnk?autoplay=1&mute=1&loop=1&playlist=cVa60kOyvnk&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playsinline=1"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="hero-video-overlay"></div>
+    <div class="grid-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Apex Legends — Competitive Clan</div>
+      <h1 class="hero-title"><span style="color:#9146FF">LE</span><span style="color:#72a2f5">G</span><span
+          style="color:#FF0000">IT</span></h1>
+      <p class="hero-subtitle">Road to <span>CC</span> &nbsp;·&nbsp; Predator &nbsp;·&nbsp; <span>ALGS</span></p>
+      <div class="hero-buttons">
+        <a href="#apply" class="btn-primary">Apply to Join</a>
+        <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary">Join Discord</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section id="stats">
+    <div class="stats-header">
+      <span class="section-label">The Standard</span>
+      <h2 class="section-title">Minimum Requirements</h2>
+      <p class="section-sub" style="margin: 0 auto;">We set a high bar. Meet these to be considered for LEGIT
+        membership.
+      </p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number" data-target="1.5" data-suffix="+" data-decimals="1">0.0</span>
+        <span class="stat-label">Minimum K/D</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="800" data-suffix="+">0</span>
+        <span class="stat-label">Avg Damage</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-static="true">MASTER</span>
+        <span class="stat-label">Minimum Rank</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-static="true">ACTIVE</span>
+        <span class="stat-label">Scrim Commitment</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo Video -->
+  <section id="logo-video-section">
+    <video autoplay muted loop playsinline>
+      <source src="LEGIT video.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <!-- Streams -->
+  <section id="streams">
+    <span class="section-label">Member Streams</span>
+    <h2 class="section-title">Watch Us Live</h2>
+    <p class="section-sub" style="margin: 0 auto;">Catch LEGIT members live on Twitch</p>
+    <div class="streams-grid">
+
+      <div class="stream-card" data-channel="zerth79">
+        <img class="stream-avatar" src="https://unavatar.io/twitch/zerth79" alt="zerth79"
+          onerror="this.src='https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c1.png'">
+        <span class="stream-badge offline" id="badge-zerth79">
+          <span class="stream-badge-dot"></span>
+          <span class="badge-label">Offline</span>
+        </span>
+        <span class="stream-name">zerth79</span>
+        <a class="stream-watch-btn" href="https://twitch.tv/zerth79" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+          </svg>
+          Watch on Twitch
+        </a>
+      </div>
+
+      <div class="stream-card" data-channel="rarely11">
+        <img class="stream-avatar" src="https://unavatar.io/twitch/rarely11" alt="rarely11"
+          onerror="this.src='https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c1.png'">
+        <span class="stream-badge offline" id="badge-rarely11">
+          <span class="stream-badge-dot"></span>
+          <span class="badge-label">Offline</span>
+        </span>
+        <span class="stream-name">rarely11</span>
+        <a class="stream-watch-btn" href="https://twitch.tv/rarely11" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+          </svg>
+          Watch on Twitch
+        </a>
+      </div>
+
+      <!-- Add more members here — copy the block above and change "zerth79" to the new channel name -->
+
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="features-header">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Our Focus</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚔️</div>
+        <h3>Scrims</h3>
+        <p>Regular organized scrims against competitive Apex teams. Structured practice to sharpen every player.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Challenger Circuit</h3>
+        <p>Active CC participation. Compete at the highest community level and build a tournament record.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💀</div>
+        <h3>Master & Predator</h3>
+        <p>We operate exclusively in Master and Predator lobbies. High-level ranked experience is a must.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Tournaments</h3>
+        <p>Competitive tournament runs with a clear path toward ALGS. We're building something that lasts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section id="requirements">
+    <div class="req-header">
+      <span class="section-label">Who We Want</span>
+      <h2 class="section-title">Membership Criteria</h2>
+    </div>
+    <div class="requirements-grid">
+      <div class="req-card required">
+        <div class="req-card-title">
+          <div class="dot"></div>Required
+        </div>
+        <ul class="req-list">
+          <li>Current or Previous Master</li>
+          <li>1.5+ K/D Ratio</li>
+          <li>800+ Average Damage</li>
+          <li>Strong High-Rank Experience</li>
+          <li>Good Communication & Microphone</li>
+          <li>Active & Committed to Scrims</li>
+          <li>Controller & MnK Welcome</li>
+        </ul>
+      </div>
+      <div class="req-card preferred">
+        <div class="req-card-title">
+          <div class="dot"></div>Preferred
+        </div>
+        <ul class="req-list">
+          <li>Multi-Season Master</li>
+          <li>Former Predator</li>
+          <li>Scrim Experience</li>
+          <li>CC Experience</li>
+          <li>IGL / Fragger / Support Role</li>
+        </ul>
+      </div>
+      <div class="req-card rejected">
+        <div class="req-card-title">
+          <div class="dot"></div>Not Accepted
+        </div>
+        <ul class="req-list">
+          <li>Hardstuck Diamond Players</li>
+          <li>Toxic Players</li>
+          <li>Cheaters / Exploit Users</li>
+          <li>Inactive Players</li>
+          <li>Poor Team Mentality</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apply -->
+  <section id="apply">
+    <div class="apply-container">
+      <div class="apply-header">
+        <span class="section-label">Join LEGIT</span>
+        <h2 class="section-title">Apply Now</h2>
+        <p class="section-sub" style="margin: 0 auto;">Fill out the form and provide proof of your stats. Only serious
+          applicants will be reviewed. <a href="https://discord.gg/YPsj22FFT" target="_blank"
+            style="color:var(--accent);">Join our Discord first</a> — then apply below.</p>
+      </div>
+      <form class="apply-form-el" id="applyForm">
+        <div class="form-group">
+          <label>EA / Origin Username *</label>
+          <input type="text" id="eaUsername" placeholder="YourUsername" required>
+        </div>
+        <div class="form-group">
+          <label>Discord Username *</label>
+          <input type="text" id="discordUser" placeholder="username" required>
+        </div>
+        <div class="form-group">
+          <label>Current Rank *</label>
+          <select id="rank" required>
+            <option value="" disabled selected>Select your rank</option>
+            <option>Master</option>
+            <option>Predator</option>
+            <option>Former Master (Previous Season)</option>
+            <option>Former Predator (Previous Season)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>K/D Ratio *</label>
+          <input type="number" id="kd" placeholder="e.g. 1.5" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+          <label>Average Damage *</label>
+          <input type="number" id="avgDmg" placeholder="e.g. 800" min="0" required>
+        </div>
+        <div class="form-group">
+          <label>Main Legend</label>
+          <input type="text" id="legend" placeholder="e.g. Wraith, Horizon">
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select id="role">
+            <option value="" disabled selected>Select role</option>
+            <option>IGL (In-Game Leader)</option>
+            <option>Fragger</option>
+            <option>Support</option>
+            <option>Flex</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Input Device</label>
+          <select id="inputDevice">
+            <option value="" disabled selected>Select input</option>
+            <option>Controller</option>
+            <option>Mouse & Keyboard (MnK)</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Stats Proof — Apex Tracker URL or Description</label>
+          <textarea id="proofText"
+            placeholder="Paste your Apex Legends Tracker URL or describe your proof..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label>Upload Screenshots</label>
+          <div class="file-upload-area" onclick="document.getElementById('proofFiles').click()">
+            <input type="file" id="proofFiles" multiple accept="image/*">
+            <div class="file-upload-text">
+              <span>Click to upload</span> or drag & drop<br>
+              <small style="opacity:0.45; font-size:0.72rem; margin-top:4px; display:block;">PNG, JPG · Apex Tracker
+                screenshots preferred</small>
+            </div>
+            <div id="fileList"></div>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">Submit Application</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="appModal">
+    <div class="modal">
+      <h3>Application Ready</h3>
+      <p>Copy your application below and paste it in the <strong>#apply</strong> channel in our Discord server. Attach
+        your screenshots there as well.</p>
+      <div class="modal-app-text" id="appText"></div>
+      <div class="modal-buttons">
+        <button class="btn-copy" id="copyBtn" onclick="copyApp()">Copy Text</button>
+        <a class="btn-discord" href="https://discord.gg/YPsj22FFT" target="_blank">Open Discord</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="orb-cta"></div>
+    <span class="section-label">Step Up</span>
+    <h2 class="section-title">Think You Have What It Takes?</h2>
+    <p class="section-sub" style="margin: 14px auto 44px; text-align: center;">Master+. 1.5 K/D. 800+ damage. If that's
+      you — we want to hear from you.</p>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a href="#apply" class="btn-primary">Apply Now</a>
+      <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary">Join Discord</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">
+      <img src="logo.png" alt="LEGIT">
+      <span class="footer-logo-text">LEGIT</span>
+    </div>
+    <div class="footer-links">
+      <a href="#features">Focus</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#streams">Streams</a>
+      <a href="#apply">Apply</a>
+      <a href="https://discord.gg/YPsj22FFT" target="_blank">Discord</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 LEGIT Clan &mdash; Apex Legends Competitive &nbsp;·&nbsp; Road to CC, Predator
+      &amp; ALGS</p>
+  </footer>
+
+  <script>
+    // ── STARSCAPE ──
+    (function () {
+      const c = document.getElementById('starscape');
+      const ctx = c.getContext('2d');
+      const stars = [];
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        c.width = window.innerWidth * dpr; c.height = window.innerHeight * dpr;
+        c.style.width = window.innerWidth + 'px'; c.style.height = window.innerHeight + 'px';
+        ctx.scale(dpr, dpr);
+      }
+      function make() {
+        stars.length = 0;
+        for (let i = 0; i < 170; i++) stars.push({
+          x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+          r: Math.random() * 1.1 + 0.2, base: Math.random() * 0.45 + 0.08,
+          dx: (Math.random() - 0.5) * 0.012, dy: (Math.random() - 0.5) * 0.007,
+          ts: Math.random() * 0.0007 + 0.0002, tp: Math.random() * Math.PI * 2
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        stars.forEach(s => {
+          s.x += s.dx; s.y += s.dy;
+          if (s.x < 0) s.x = window.innerWidth; if (s.x > window.innerWidth) s.x = 0;
+          if (s.y < 0) s.y = window.innerHeight; if (s.y > window.innerHeight) s.y = 0;
+          const op = Math.max(0, s.base + Math.sin(Date.now() * s.ts + s.tp) * 0.22);
+          ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${op})`; ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      window.addEventListener('resize', () => { resize(); make(); });
+      resize(); make(); draw();
+    })();
+
+    // ── SCROLL PROGRESS ──
+    window.addEventListener('scroll', () => {
+      document.getElementById('scrollProgress').style.width =
+        (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+    }, { passive: true });
+
+    // ── NAVBAR ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('nav-scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    // ── HAMBURGER ──
+    const navMobile = document.getElementById('navMobile');
+    document.getElementById('navHamburger').addEventListener('click', () => {
+      navMobile.classList.add('open');
+    });
+    document.getElementById('navMobileClose').addEventListener('click', () => {
+      navMobile.classList.remove('open');
+    });
+    document.querySelectorAll('.nav-mobile a').forEach(a => {
+      a.addEventListener('click', () => navMobile.classList.remove('open'));
+    });
+
+    // ── LOADER (hide after video can play) ──
+    function hideLoader() {
+      document.getElementById('loaderBar').style.width = '100%';
+      const l = document.getElementById('loader');
+      setTimeout(() => { l.style.opacity = '0'; l.style.transition = 'opacity 0.5s ease'; }, 300);
+      setTimeout(() => l.style.display = 'none', 800);
+    }
+    const loaderVideo = document.getElementById('loaderVideo');
+    if (loaderVideo) {
+      loaderVideo.addEventListener('ended', hideLoader, { once: true });
+      setTimeout(hideLoader, 6000);
+    } else {
+      setTimeout(hideLoader, 1500);
+    }
+
+    // ── COUNT-UP ──
+    function easeOut(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+    function countUp(el, target, suffix, dur = 1800) {
+      const s = performance.now();
+      const dec = el.dataset.decimals !== undefined ? parseInt(el.dataset.decimals) : (target % 1 !== 0 ? 1 : 0);
+      el.classList.add('counting');
+      (function tick(now) {
+        const p = Math.min((now - s) / dur, 1);
+        const v = easeOut(p) * target;
+        el.textContent = v.toFixed(dec) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else { el.textContent = target.toFixed(dec) + suffix; el.classList.remove('counting'); }
+      })(s);
+    }
+
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.stat-number').forEach((el, i) => {
+            if (el.dataset.static) return;
+            const t = parseFloat(el.dataset.target);
+            const suf = el.dataset.suffix || '';
+            setTimeout(() => countUp(el, t, suf), i * 200);
+          });
+        }
+      });
+    }, { threshold: 0.3 }).observe(document.querySelector('.stats-grid'));
+
+    // ── FILE UPLOAD ──
+    document.getElementById('proofFiles').addEventListener('change', function () {
+      document.getElementById('fileList').innerHTML =
+        Array.from(this.files).map(f => `✓ ${f.name}`).join('<br>');
+    });
+
+    // ── TOAST HELPER ──
+    function showToast(msg, type) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `show ${type}`;
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => { t.classList.remove('show'); }, 4000);
+    }
+
+    // ── APPLY FORM ──
+    document.getElementById('applyForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const v = id => document.getElementById(id).value || 'Not provided';
+      const files = document.getElementById('proofFiles').files;
+      const fileNames = files.length > 0 ? Array.from(files).map(f => f.name).join(', ') : 'None attached';
+
+      if (DISCORD_WEBHOOK) {
+        const btn = this.querySelector('.btn-submit');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          const embedPayload = JSON.stringify({
+            username: 'LEGIT Applications',
+            embeds: [{
+              title: '🔴 New Clan Application',
+              color: 16711680,
+              fields: [
+                { name: 'EA Username', value: v('eaUsername'), inline: true },
+                { name: 'Discord', value: v('discordUser'), inline: true },
+                { name: 'Rank', value: v('rank'), inline: true },
+                { name: 'K/D Ratio', value: v('kd'), inline: true },
+                { name: 'Avg Damage', value: v('avgDmg'), inline: true },
+                { name: 'Main Legend', value: v('legend') || 'Not specified', inline: true },
+                { name: 'Role', value: v('role') || 'Not specified', inline: true },
+                { name: 'Input Device', value: v('inputDevice') || 'Not specified', inline: true },
+                { name: 'Stats Proof', value: v('proofText') },
+                { name: 'Screenshots', value: fileNames }
+              ],
+              footer: { text: 'Road to CC · Predator · ALGS' },
+              timestamp: new Date().toISOString()
+            }]
+          });
+          const formData = new FormData();
+          formData.append('payload_json', embedPayload);
+          Array.from(files).forEach((file, i) => formData.append(`files[${i}]`, file, file.name));
+          const res = await fetch(DISCORD_WEBHOOK, { method: 'POST', body: formData });
+          if (res.ok) {
+            showToast('✓ Application sent to Discord!', 'success');
+            this.reset();
+            document.getElementById('fileList').innerHTML = '';
+          } else {
+            showToast('✗ Failed to send — try again', 'error');
+          }
+        } catch (_) {
+          showToast('✗ Network error — try again', 'error');
+        }
+        btn.textContent = 'Submit Application';
+        btn.disabled = false;
+      } else {
+        // Fallback: show copy modal
+        const text =
+          `━━━━━━━━━━━━━━━━━━
+🔴 LEGIT CLAN APPLICATION
+━━━━━━━━━━━━━━━━━━
+EA Username:     ${v('eaUsername')}
+Discord:         ${v('discordUser')}
+Rank:            ${v('rank')}
+K/D Ratio:       ${v('kd')}
+Avg Damage:      ${v('avgDmg')}
+Main Legend:     ${v('legend') || 'Not specified'}
+Role:            ${v('role') || 'Not specified'}
+Input:           ${v('inputDevice') || 'Not specified'}
+━━━━━━━━━━━━━━━━━━
+Stats Proof:
+${v('proofText')}
+Screenshots: ${fileNames}
+━━━━━━━━━━━━━━━━━━
+Road to CC · Predator · ALGS 🔴`;
+        document.getElementById('appText').textContent = text;
+        document.getElementById('appModal').classList.add('visible');
+      }
+    });
+
+    document.getElementById('appModal').addEventListener('click', function (e) {
+      if (e.target === this) this.classList.remove('visible');
+    });
+
+    // ── TWITCH LIVE STATUS ──
+    // To enable: get a free Client ID + Secret from dev.twitch.tv
+    // Then run in PowerShell to generate a token (valid ~60 days):
+    //   Invoke-RestMethod -Uri "https://id.twitch.tv/oauth2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=client_credentials" -Method POST | Select-Object access_token
+    // Paste the values below:
+    const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1514762045382201469/Gff3OD9bHCKaFuY9cDzQGAEOC8MrZvi0pf7Mr4ud3io9sYbNWqjW4MhVuYpCWO-ZhHdk';
+
+    const TWITCH_CLIENT_ID = '';   // ← paste your Client ID here
+    const TWITCH_TOKEN = '';       // ← paste your app access token here
+
+    async function checkTwitchLive() {
+      if (!TWITCH_CLIENT_ID || !TWITCH_TOKEN) return;
+      const cards = document.querySelectorAll('.stream-card[data-channel]');
+      const channels = Array.from(cards).map(c => c.dataset.channel);
+      try {
+        const query = channels.map(c => `user_login=${c}`).join('&');
+        const res = await fetch(`https://api.twitch.tv/helix/streams?${query}`, {
+          headers: { 'Client-ID': TWITCH_CLIENT_ID, 'Authorization': `Bearer ${TWITCH_TOKEN}` }
+        });
+        if (!res.ok) return;
+        const { data } = await res.json();
+        const liveSet = new Set(data.map(s => s.user_login.toLowerCase()));
+        channels.forEach(ch => {
+          const badge = document.getElementById(`badge-${ch}`);
+          if (!badge) return;
+          const label = badge.querySelector('.badge-label');
+          if (liveSet.has(ch.toLowerCase())) {
+            badge.className = 'stream-badge live';
+            label.textContent = 'Live';
+          } else {
+            badge.className = 'stream-badge offline';
+            label.textContent = 'Offline';
+          }
+        });
+      } catch (_) { }
+    }
+    checkTwitchLive();
+
+    function copyApp() {
+      navigator.clipboard.writeText(document.getElementById('appText').textContent).then(() => {
+        const b = document.getElementById('copyBtn');
+        b.textContent = 'Copied ✓';
+        setTimeout(() => b.textContent = 'Copy Text', 2000);
+      });
+    }
+  </script>
+</body>
+
+</html>
