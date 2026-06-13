@@ -232,7 +232,7 @@
       z-index: 0;
     }
 
-    .hero-video-bg iframe {
+    .hero-video-bg video {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -243,6 +243,7 @@
       transform: translate(-50%, -50%);
       pointer-events: none;
       border: none;
+      object-fit: cover;
     }
 
     .hero-video-overlay {
@@ -1448,12 +1449,9 @@
   <!-- Hero -->
   <section id="hero">
     <div class="hero-video-bg">
-      <iframe
-        id="heroBgVideo"
-        data-src="https://www.youtube.com/embed/cVa60kOyvnk?autoplay=1&mute=1&loop=1&playlist=cVa60kOyvnk&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1&playsinline=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+      <video id="heroBgVideo" autoplay muted loop playsinline>
+        <source src="LEGIT clips.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-video-overlay"></div>
     <div class="grid-overlay"></div>
@@ -2163,11 +2161,6 @@ Road to CC · Predator · ALGS 🔴`;
       const logoVid = document.querySelector('#logo-video-section video');
       if (logoVid) logoVid.style.display = 'none';
       hideLoader();
-    } else {
-      setTimeout(() => {
-        const iframe = document.getElementById('heroBgVideo');
-        if (iframe) iframe.src = iframe.dataset.src;
-      }, 500);
     }
   </script>
 </body>
