@@ -1701,6 +1701,15 @@
           </select>
         </div>
         <div class="form-group">
+          <label>Platform *</label>
+          <select id="platform" required>
+            <option value="" disabled selected>Select platform</option>
+            <option>PC</option>
+            <option>Xbox</option>
+            <option>PlayStation</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label>Input Device</label>
           <select id="inputDevice">
             <option value="" disabled selected>Select input</option>
@@ -1918,6 +1927,7 @@
                 { name: 'Avg Damage', value: v('avgDmg'), inline: true },
                 { name: 'Main Legend', value: v('legend') || 'Not specified', inline: true },
                 { name: 'Role', value: v('role') || 'Not specified', inline: true },
+                { name: 'Platform', value: v('platform') || 'Not specified', inline: true },
                 { name: 'Input Device', value: v('inputDevice') || 'Not specified', inline: true },
                 { name: 'Stats Proof', value: v('proofText') },
                 { name: 'Screenshots', value: fileNames }
@@ -1969,6 +1979,7 @@ K/D Ratio:       ${v('kd')}
 Avg Damage:      ${v('avgDmg')}
 Main Legend:     ${v('legend') || 'Not specified'}
 Role:            ${v('role') || 'Not specified'}
+Platform:        ${v('platform') || 'Not specified'}
 Input:           ${v('inputDevice') || 'Not specified'}
 ━━━━━━━━━━━━━━━━━━
 Stats Proof:
