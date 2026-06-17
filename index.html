@@ -2060,10 +2060,10 @@ Road to CC · Predator · ALGS 🔴`;
     // ── VISITOR COUNTER ──
     (async function () {
       try {
-        const res = await fetch('https://api.countapi.xyz/hit/legit-apex-clan-2026/visits');
+        const res = await fetch('https://api.counterapi.dev/v1/legit-apex-clan/visits/up');
         if (res.ok) {
-          const { value } = await res.json();
-          document.getElementById('visitorCount').textContent = value.toLocaleString();
+          const { count } = await res.json();
+          document.getElementById('visitorCount').textContent = count.toLocaleString();
         }
       } catch (_) {}
     })();
