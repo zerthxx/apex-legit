@@ -2060,7 +2060,7 @@ Road to CC · Predator · ALGS 🔴`;
     // ── VISITOR COUNTER ──
     (async function () {
       try {
-        const res = await fetch('https://api.counterapi.dev/v1/legit-apex-clan/visits/up');
+        const res = await fetch('https://discord-bot-production-fcdc.up.railway.app/counter');
         if (res.ok) {
           const { count } = await res.json();
           document.getElementById('visitorCount').textContent = count.toLocaleString();
