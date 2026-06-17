@@ -499,6 +499,95 @@
       display: block;
     }
 
+    /* ── ABOUT ── */
+    #about {
+      position: relative;
+      z-index: 1;
+      padding: clamp(50px, 8vw, 100px) clamp(16px, 5vw, 40px);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .about-header {
+      margin-bottom: 56px;
+    }
+
+    .about-offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      max-width: 1100px;
+      margin: 0 auto 56px;
+    }
+
+    .about-roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto 48px;
+      text-align: left;
+    }
+
+    .about-role-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .about-role-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .about-role-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .about-reqs-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .req-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 16px;
+    }
+
+    .about-sub-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      margin-bottom: 28px;
+      display: block;
+    }
+
+    @media (max-width: 1024px) {
+      .about-offer-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-roles-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .about-offer-grid { grid-template-columns: 1fr; }
+      .about-roles-grid { grid-template-columns: 1fr; }
+    }
+
     /* ── FEATURES ── */
     #features {
       position: relative;
@@ -1440,6 +1529,7 @@
       </a>
       <div class="nav-links">
         <a href="#features">Focus</a>
+        <a href="#about">About</a>
         <a href="#requirements">Requirements</a>
         <a href="#streams">Streams</a>
         <div class="nav-visitors">
@@ -1464,6 +1554,7 @@
   <div class="nav-mobile" id="navMobile">
     <button class="nav-mobile-close" id="navMobileClose">✕</button>
     <a href="#features">Focus</a>
+    <a href="#about">About</a>
     <a href="#requirements">Requirements</a>
     <a href="#streams">Streams</a>
     <a href="#apply" class="nav-mobile-cta">Apply Now</a>
@@ -1573,6 +1664,77 @@
 
       <!-- Add more members here — copy the block above and change "zerth79" to the new channel name -->
 
+    </div>
+  </section>
+
+  <!-- About / Recruitment -->
+  <section id="about">
+    <div class="about-header">
+      <span class="section-label">Recruiting Now</span>
+      <h2 class="section-title">Join LEGIT Clan</h2>
+      <p class="section-sub" style="margin: 0 auto;">We're building a serious long-term competitive roster — grinding ranked to high Predator, competing in scrims daily, and working toward Challenger Circuit and semi-pro level. If you're committed, this is your team.</p>
+    </div>
+
+    <span class="about-sub-label">What We Offer</span>
+    <div class="about-offer-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚔️</div>
+        <h3>Daily Scrims</h3>
+        <p>Organized daily scrim sessions against competitive teams to sharpen every aspect of your game.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💎</div>
+        <h3>High Predator Grind</h3>
+        <p>Not just reaching Predator — maintaining a high Predator placement every season through focused ranked grinding.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎬</div>
+        <h3>VOD Reviews</h3>
+        <p>Regular gameplay review sessions to break down mistakes, refine macro, and accelerate individual improvement.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Community Tournaments</h3>
+        <p>Active participation in community cups and tournaments building a strong competitive track record.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>Team Chemistry</h3>
+        <p>Positive, drama-free environment built on trust, communication, and a shared drive to improve.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Long-Term Development</h3>
+        <p>We're building something lasting. A permanent roster with ambitions beyond ranked — toward ALGS and beyond.</p>
+      </div>
+    </div>
+
+    <span class="about-sub-label">Who We're Looking For</span>
+    <div class="about-roles-grid">
+      <div class="about-role-card">
+        <div class="about-role-title">🎮 IGL</div>
+        <p class="about-role-desc">Experienced in-game leader with strong macro understanding, confident end-game calling, and the ability to make decisive calls under pressure.</p>
+      </div>
+      <div class="about-role-card">
+        <div class="about-role-title">💀 Fragger</div>
+        <p class="about-role-desc">Mechanical players who can confidently take fights, create openings for the team, and consistently perform in high-pressure ranked and scrim environments.</p>
+      </div>
+      <div class="about-role-card">
+        <div class="about-role-title">🛡️ Anchor / Refrag</div>
+        <p class="about-role-desc">Players with excellent positioning, teamfight awareness, and the ability to support engagements and clean up after the fragger opens fights.</p>
+      </div>
+    </div>
+
+    <span class="about-sub-label" style="margin-top:8px;">Requirements</span>
+    <div class="about-reqs-strip">
+      <span class="req-pill">18+</span>
+      <span class="req-pill">PC Only</span>
+      <span class="req-pill">Daily Availability</span>
+      <span class="req-pill">Scrim Commitment</span>
+      <span class="req-pill">Strong Communication</span>
+      <span class="req-pill">Competitive Mindset</span>
+      <span class="req-pill">VOD Review Willingness</span>
+      <span class="req-pill">No Team-Hopping</span>
     </div>
   </section>
 
