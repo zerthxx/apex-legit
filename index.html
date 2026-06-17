@@ -215,6 +215,25 @@
       transform: translateY(-1px) !important;
     }
 
+    .nav-visitors {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      pointer-events: none;
+    }
+
+    .nav-visitors-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+
     /* ── HERO ── */
     #hero {
       position: relative;
@@ -1423,6 +1442,10 @@
         <a href="#features">Focus</a>
         <a href="#requirements">Requirements</a>
         <a href="#streams">Streams</a>
+        <div class="nav-visitors">
+          <span class="nav-visitors-dot"></span>
+          <span id="visitorCount">—</span>&nbsp;visitors
+        </div>
         <a href="#apply" class="nav-cta">Apply Now</a>
       </div>
       <div id="navAuthArea" class="nav-auth-area">
@@ -2033,6 +2056,17 @@ Road to CC · Predator · ALGS 🔴`;
       } catch (_) { }
     }
     checkTwitchLive();
+
+    // ── VISITOR COUNTER ──
+    (async function () {
+      try {
+        const res = await fetch('https://api.countapi.xyz/hit/legit-apex-clan-2026/visits');
+        if (res.ok) {
+          const { value } = await res.json();
+          document.getElementById('visitorCount').textContent = value.toLocaleString();
+        }
+      } catch (_) {}
+    })();
 
     function copyApp() {
       navigator.clipboard.writeText(document.getElementById('appText').textContent).then(() => {
