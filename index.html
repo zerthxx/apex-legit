@@ -435,6 +435,115 @@
     }
 
 
+    /* ── HERO ENTRANCE ── */
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-enter {
+      opacity: 0;
+    }
+
+    .hero-enter.visible {
+      animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* ── GLITCH ── */
+    @keyframes glitch {
+      0%   { clip-path: inset(40% 0 61% 0); transform: translate(-3px, 0); }
+      5%   { clip-path: inset(92% 0 1% 0);  transform: translate(3px, 0); }
+      10%  { clip-path: inset(20% 0 70% 0); transform: translate(-3px, 0); }
+      15%  { clip-path: inset(60% 0 30% 0); transform: translate(3px, 0); }
+      20%  { clip-path: inset(10% 0 85% 0); transform: translate(-2px, 0); }
+      25%  { clip-path: inset(0% 0 100% 0); transform: translate(0, 0); }
+      100% { clip-path: inset(0% 0 100% 0); transform: translate(0, 0); }
+    }
+
+    .hero-title {
+      position: relative;
+    }
+
+    .hero-title::before,
+    .hero-title::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: #fff;
+      pointer-events: none;
+    }
+
+    .hero-title::before {
+      color: rgba(255, 80, 80, 0.85);
+      animation: glitch 6s infinite;
+      animation-delay: 2s;
+    }
+
+    .hero-title::after {
+      color: rgba(80, 180, 255, 0.7);
+      animation: glitch 6s infinite;
+      animation-delay: 2.08s;
+      transform: translateX(2px);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-section {
+      overflow: hidden;
+      padding: 14px 0;
+      background: rgba(255, 0, 0, 0.04);
+      border-top: 1px solid rgba(255, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(255, 0, 0, 0.12);
+      position: relative;
+      z-index: 1;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: 0 32px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .marquee-item.accent {
+      color: var(--accent);
+    }
+
     /* ── SHARED SECTION STYLES ── */
     .section-label {
       font-family: 'JetBrains Mono', monospace;
@@ -1626,11 +1735,11 @@
     <div class="grid-overlay"></div>
     <div class="hero-orb"></div>
     <div class="hero-content">
-      <div class="hero-tag">Apex Legends — Competitive Clan</div>
-      <h1 class="hero-title"><span style="color:#9146FF">LE</span><span style="color:#72a2f5">G</span><span
+      <div class="hero-tag hero-enter">Apex Legends — Competitive Clan</div>
+      <h1 class="hero-title hero-enter" data-text="LEGIT"><span style="color:#9146FF">LE</span><span style="color:#72a2f5">G</span><span
           style="color:#FF0000">IT</span></h1>
-      <p class="hero-subtitle">Road to <span>CC</span> &nbsp;·&nbsp; Predator &nbsp;·&nbsp; <span>ALGS</span></p>
-      <div class="hero-buttons">
+      <p class="hero-subtitle hero-enter">Road to <span>CC</span> &nbsp;·&nbsp; Predator &nbsp;·&nbsp; <span>ALGS</span></p>
+      <div class="hero-buttons hero-enter">
         <a href="#apply" class="btn-primary">Apply to Join</a>
         <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary">Join Discord</a>
       </div>
@@ -1651,24 +1760,46 @@
       </p>
     </div>
     <div class="stats-grid">
-      <div class="stat-item">
+      <div class="stat-item reveal">
         <span class="stat-number" data-target="1.5" data-suffix="+" data-decimals="1">0.0</span>
         <span class="stat-label">Minimum K/D</span>
       </div>
-      <div class="stat-item">
+      <div class="stat-item reveal">
         <span class="stat-number" data-target="800" data-suffix="+">0</span>
         <span class="stat-label">Avg Damage</span>
       </div>
-      <div class="stat-item">
+      <div class="stat-item reveal">
         <span class="stat-number" data-static="true">MASTER</span>
         <span class="stat-label">Minimum Rank</span>
       </div>
-      <div class="stat-item">
+      <div class="stat-item reveal">
         <span class="stat-number" data-static="true">ACTIVE</span>
         <span class="stat-label">Scrim Commitment</span>
       </div>
     </div>
   </section>
+
+  <!-- Marquee -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item accent">PREDATOR</span><span class="marquee-item">·</span>
+      <span class="marquee-item">CHALLENGER CIRCUIT</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">ALGS</span><span class="marquee-item">·</span>
+      <span class="marquee-item">DAILY SCRIMS</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">VOD REVIEWS</span><span class="marquee-item">·</span>
+      <span class="marquee-item">LEGIT CLAN</span><span class="marquee-item">·</span>
+      <span class="marquee-item">HIGH RANKED</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">COMPETITIVE</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">PREDATOR</span><span class="marquee-item">·</span>
+      <span class="marquee-item">CHALLENGER CIRCUIT</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">ALGS</span><span class="marquee-item">·</span>
+      <span class="marquee-item">DAILY SCRIMS</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">VOD REVIEWS</span><span class="marquee-item">·</span>
+      <span class="marquee-item">LEGIT CLAN</span><span class="marquee-item">·</span>
+      <span class="marquee-item">HIGH RANKED</span><span class="marquee-item">·</span>
+      <span class="marquee-item accent">COMPETITIVE</span><span class="marquee-item">·</span>
+    </div>
+  </div>
 
   <!-- Streams -->
   <section id="streams">
@@ -1677,7 +1808,7 @@
     <p class="section-sub" style="margin: 0 auto;">Catch LEGIT members live on Twitch</p>
     <div class="streams-grid">
 
-      <div class="stream-card" data-channel="zerth79">
+      <div class="stream-card reveal" data-channel="zerth79">
         <img class="stream-avatar" src="https://unavatar.io/twitch/zerth79" alt="zerth79"
           onerror="this.src='https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c1.png'">
         <span class="stream-badge offline" id="badge-zerth79">
@@ -1694,7 +1825,7 @@
         </a>
       </div>
 
-      <div class="stream-card" data-channel="rarely11">
+      <div class="stream-card reveal" data-channel="rarely11">
         <img class="stream-avatar" src="https://unavatar.io/twitch/rarely11" alt="rarely11"
           onerror="this.src='https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c1.png'">
         <span class="stream-badge offline" id="badge-rarely11">
@@ -1760,15 +1891,15 @@
 
     <span class="about-sub-label">Who We're Looking For</span>
     <div class="about-roles-grid">
-      <div class="about-role-card">
+      <div class="about-role-card reveal">
         <div class="about-role-title">🎮 IGL</div>
         <p class="about-role-desc">Experienced in-game leader with strong macro understanding, confident end-game calling, and the ability to make decisive calls under pressure.</p>
       </div>
-      <div class="about-role-card">
+      <div class="about-role-card reveal">
         <div class="about-role-title">💀 Fragger</div>
         <p class="about-role-desc">Mechanical players who can confidently take fights, create openings for the team, and consistently perform in high-pressure ranked and scrim environments.</p>
       </div>
-      <div class="about-role-card">
+      <div class="about-role-card reveal">
         <div class="about-role-title">🛡️ Anchor / Refrag</div>
         <p class="about-role-desc">Players with excellent positioning, teamfight awareness, and the ability to support engagements and clean up after the fragger opens fights.</p>
       </div>
@@ -1794,7 +1925,7 @@
       <h2 class="section-title">Membership Criteria</h2>
     </div>
     <div class="requirements-grid">
-      <div class="req-card required">
+      <div class="req-card required reveal">
         <div class="req-card-title">
           <div class="dot"></div>Required
         </div>
@@ -1808,7 +1939,7 @@
           <li>Controller & MnK Welcome</li>
         </ul>
       </div>
-      <div class="req-card preferred">
+      <div class="req-card preferred reveal">
         <div class="req-card-title">
           <div class="dot"></div>Preferred
         </div>
@@ -1820,7 +1951,7 @@
           <li>IGL / Fragger / Support Role</li>
         </ul>
       </div>
-      <div class="req-card rejected">
+      <div class="req-card rejected reveal">
         <div class="req-card-title">
           <div class="dot"></div>Not Accepted
         </div>
@@ -2040,7 +2171,12 @@
       document.getElementById('loaderBar').style.width = '100%';
       const l = document.getElementById('loader');
       setTimeout(() => { l.style.opacity = '0'; l.style.transition = 'opacity 0.5s ease'; }, 300);
-      setTimeout(() => l.style.display = 'none', 800);
+      setTimeout(() => {
+        l.style.display = 'none';
+        document.querySelectorAll('.hero-enter').forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 150);
+        });
+      }, 800);
     }
     const loaderVideo = document.getElementById('loaderVideo');
     if (loaderVideo) {
@@ -2077,6 +2213,20 @@
         }
       });
     }, { threshold: 0.3 }).observe(document.querySelector('.stats-grid'));
+
+    // ── SCROLL REVEAL ──
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4) * 0.1 + 's';
+      revealObserver.observe(el);
+    });
 
     // ── FILE UPLOAD ──
     document.getElementById('proofFiles').addEventListener('change', function () {
