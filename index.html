@@ -2188,6 +2188,9 @@
       const c = document.getElementById('starscape');
       const ctx = c.getContext('2d');
       const stars = [];
+      let mx = -999, my = -999;
+      const REPEL = 110, STRENGTH = 2.2, FRICTION = 0.88;
+      window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
       function resize() {
         const dpr = window.devicePixelRatio || 1;
         c.width = window.innerWidth * dpr; c.height = window.innerHeight * dpr;
@@ -2196,22 +2199,33 @@
       }
       function make() {
         stars.length = 0;
-        for (let i = 0; i < 170; i++) stars.push({
+        for (let i = 0; i < 180; i++) stars.push({
           x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
-          r: Math.random() * 1.1 + 0.2, base: Math.random() * 0.45 + 0.08,
+          r: Math.random() * 1.2 + 0.2, base: Math.random() * 0.45 + 0.08,
           dx: (Math.random() - 0.5) * 0.012, dy: (Math.random() - 0.5) * 0.007,
-          ts: Math.random() * 0.0007 + 0.0002, tp: Math.random() * Math.PI * 2
+          vx: 0, vy: 0,
+          ts: Math.random() * 0.0007 + 0.0002, tp: Math.random() * Math.PI * 2,
+          red: i < 36
         });
       }
       function draw() {
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
         stars.forEach(s => {
-          s.x += s.dx; s.y += s.dy;
+          const distX = s.x - mx, distY = s.y - my;
+          const dist = Math.sqrt(distX * distX + distY * distY);
+          if (dist < REPEL && dist > 0) {
+            const force = (REPEL - dist) / REPEL * STRENGTH;
+            s.vx += (distX / dist) * force;
+            s.vy += (distY / dist) * force;
+          }
+          s.vx *= FRICTION; s.vy *= FRICTION;
+          s.x += s.dx + s.vx; s.y += s.dy + s.vy;
           if (s.x < 0) s.x = window.innerWidth; if (s.x > window.innerWidth) s.x = 0;
           if (s.y < 0) s.y = window.innerHeight; if (s.y > window.innerHeight) s.y = 0;
           const op = Math.max(0, s.base + Math.sin(Date.now() * s.ts + s.tp) * 0.22);
           ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255,255,255,${op})`; ctx.fill();
+          ctx.fillStyle = s.red ? `rgba(255,60,60,${op})` : `rgba(255,255,255,${op})`;
+          ctx.fill();
         });
         requestAnimationFrame(draw);
       }
