@@ -18,9 +18,10 @@
       --secondary-rgb: 0, 112, 243;
       --bg: #151616;
       --text: #FFFFFF;
-      --text-secondary: rgba(255, 255, 255, 0.55);
-      --border: rgba(255, 255, 255, 0.07);
+      --text-secondary: rgba(255, 255, 255, 0.65);
+      --border: rgba(255, 255, 255, 0.09);
       --radius: 4px;
+      --glow: rgba(255, 0, 0, 0.12);
     }
 
     * {
@@ -232,6 +233,21 @@
       border-radius: 50%;
       background: var(--accent);
       animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      background: var(--accent);
+      opacity: 0.04;
+      border-radius: 50%;
+      filter: blur(130px);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 2;
     }
 
     /* ── HERO ── */
@@ -466,20 +482,23 @@
     }
 
     .stat-item {
-      padding: 32px 16px;
+      padding: 36px 16px;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.02);
-      transition: border-color 0.3s;
+      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.04);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
 
     .stat-item:hover {
-      border-color: rgba(var(--accent-rgb), 0.25);
+      border-color: rgba(var(--accent-rgb), 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.12);
     }
 
     .stat-number {
       font-family: 'Bebas Neue', Impact, sans-serif;
-      font-size: 3.2rem;
+      font-size: 3.6rem;
       letter-spacing: 2px;
       color: var(--accent);
       display: block;
@@ -531,9 +550,16 @@
 
     .about-role-card {
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(var(--accent-rgb), 0.18);
+      border: 1px solid rgba(var(--accent-rgb), 0.2);
       border-radius: var(--radius);
-      padding: 28px 24px;
+      padding: 32px 24px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .about-role-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(var(--accent-rgb), 0.4);
+      box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.1);
     }
 
     .about-role-title {
@@ -564,10 +590,10 @@
       font-size: 0.68rem;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
+      color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 999px;
-      padding: 7px 16px;
+      padding: 8px 18px;
     }
 
     .about-sub-label {
@@ -666,15 +692,31 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 28px;
+      padding: 32px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .req-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
     .req-card.required {
-      border-color: rgba(var(--accent-rgb), 0.18);
+      border-color: rgba(var(--accent-rgb), 0.22);
+      background: rgba(var(--accent-rgb), 0.03);
+    }
+
+    .req-card.required:hover {
+      box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.1);
     }
 
     .req-card.preferred {
-      border-color: rgba(var(--secondary-rgb), 0.18);
+      border-color: rgba(var(--secondary-rgb), 0.22);
+      background: rgba(var(--secondary-rgb), 0.03);
+    }
+
+    .req-card.preferred:hover {
+      box-shadow: 0 8px 24px rgba(var(--secondary-rgb), 0.1);
     }
 
     .req-card-title {
@@ -688,8 +730,8 @@
     }
 
     .dot {
-      width: 7px;
-      height: 7px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       flex-shrink: 0;
     }
@@ -791,7 +833,7 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 13px 15px;
@@ -799,13 +841,14 @@
       font-family: 'Barlow', sans-serif;
       font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: rgba(var(--accent-rgb), 0.45);
+      border-color: rgba(var(--accent-rgb), 0.5);
+      box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.08);
     }
 
     .form-group select option {
@@ -852,6 +895,11 @@
       line-height: 1.6;
     }
 
+    @keyframes submitPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.28); }
+      50% { box-shadow: 0 0 36px rgba(var(--accent-rgb), 0.5); }
+    }
+
     .btn-submit {
       grid-column: 1 / -1;
       background: var(--accent);
@@ -864,12 +912,13 @@
       letter-spacing: 3px;
       cursor: pointer;
       transition: all 0.25s;
-      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.28);
+      animation: submitPulse 2.5s ease-in-out infinite;
     }
 
     .btn-submit:hover {
-      box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.55);
+      box-shadow: 0 0 48px rgba(var(--accent-rgb), 0.65);
       transform: translateY(-2px);
+      animation: none;
     }
 
     /* ── MODAL ── */
@@ -996,9 +1045,17 @@
     footer {
       position: relative;
       z-index: 1;
-      border-top: 1px solid var(--border);
+      border-top: none;
       padding: 56px 40px 36px;
       text-align: center;
+    }
+
+    footer::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.4), transparent);
+      margin-bottom: 56px;
     }
 
     .footer-logo {
@@ -1061,7 +1118,7 @@
 
     .stream-card {
       background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(145, 70, 255, 0.18);
+      border: 1px solid rgba(var(--accent-rgb), 0.18);
       border-radius: 8px;
       padding: 28px 20px 24px;
       display: flex;
@@ -1077,14 +1134,14 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at top, rgba(145, 70, 255, 0.07) 0%, transparent 70%);
+      background: radial-gradient(ellipse at top, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .stream-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(145, 70, 255, 0.45);
-      box-shadow: 0 8px 32px rgba(145, 70, 255, 0.15);
+      border-color: rgba(var(--accent-rgb), 0.4);
+      box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.12);
     }
 
     .stream-avatar {
@@ -1092,8 +1149,8 @@
       height: 72px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(145, 70, 255, 0.5);
-      box-shadow: 0 0 18px rgba(145, 70, 255, 0.3);
+      border: 2px solid rgba(var(--accent-rgb), 0.5);
+      box-shadow: 0 0 18px rgba(var(--accent-rgb), 0.2);
     }
 
     .stream-badge {
@@ -1158,9 +1215,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(145, 70, 255, 0.15);
-      border: 1px solid rgba(145, 70, 255, 0.4);
-      color: #c9a0ff;
+      background: rgba(var(--accent-rgb), 0.1);
+      border: 1px solid rgba(var(--accent-rgb), 0.35);
+      color: rgba(255, 120, 120, 1);
       text-decoration: none;
       font-size: 0.78rem;
       font-weight: 600;
@@ -1172,10 +1229,10 @@
     }
 
     .stream-watch-btn:hover {
-      background: rgba(145, 70, 255, 0.3);
-      border-color: rgba(145, 70, 255, 0.7);
+      background: rgba(var(--accent-rgb), 0.2);
+      border-color: rgba(var(--accent-rgb), 0.7);
       color: #fff;
-      box-shadow: 0 0 16px rgba(145, 70, 255, 0.3);
+      box-shadow: 0 0 16px rgba(var(--accent-rgb), 0.25);
     }
 
     /* ── TOAST ── */
@@ -1528,10 +1585,9 @@
             style="color:#FF0000">IT</span></span>
       </a>
       <div class="nav-links">
-        <a href="#features">Focus</a>
         <a href="#about">About</a>
-        <a href="#requirements">Requirements</a>
         <a href="#streams">Streams</a>
+        <a href="#requirements">Requirements</a>
         <div class="nav-visitors">
           <span class="nav-visitors-dot"></span>
           <span id="visitorCount">—</span>&nbsp;visitors
@@ -1553,10 +1609,9 @@
   <!-- Mobile Menu -->
   <div class="nav-mobile" id="navMobile">
     <button class="nav-mobile-close" id="navMobileClose">✕</button>
-    <a href="#features">Focus</a>
     <a href="#about">About</a>
-    <a href="#requirements">Requirements</a>
     <a href="#streams">Streams</a>
+    <a href="#requirements">Requirements</a>
     <a href="#apply" class="nav-mobile-cta">Apply Now</a>
   </div>
 
@@ -1569,6 +1624,7 @@
     </div>
     <div class="hero-video-overlay"></div>
     <div class="grid-overlay"></div>
+    <div class="hero-orb"></div>
     <div class="hero-content">
       <div class="hero-tag">Apex Legends — Competitive Clan</div>
       <h1 class="hero-title"><span style="color:#9146FF">LE</span><span style="color:#72a2f5">G</span><span
@@ -1612,13 +1668,6 @@
         <span class="stat-label">Scrim Commitment</span>
       </div>
     </div>
-  </section>
-
-  <!-- Logo Video -->
-  <section id="logo-video-section">
-    <video autoplay muted loop playsinline preload="none">
-      <source src="LEGIT video.mp4" type="video/mp4">
-    </video>
   </section>
 
   <!-- Streams -->
@@ -1735,36 +1784,6 @@
       <span class="req-pill">Competitive Mindset</span>
       <span class="req-pill">VOD Review Willingness</span>
       <span class="req-pill">No Team-Hopping</span>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features">
-    <div class="features-header">
-      <span class="section-label">What We Do</span>
-      <h2 class="section-title">Our Focus</h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚔️</div>
-        <h3>Scrims</h3>
-        <p>Regular organized scrims against competitive Apex teams. Structured practice to sharpen every player.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🏆</div>
-        <h3>Challenger Circuit</h3>
-        <p>Active CC participation. Compete at the highest community level and build a tournament record.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">💀</div>
-        <h3>Master & Predator</h3>
-        <p>We operate exclusively in Master and Predator lobbies. High-level ranked experience is a must.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3>Tournaments</h3>
-        <p>Competitive tournament runs with a clear path toward ALGS. We're building something that lasts.</p>
-      </div>
     </div>
   </section>
 
@@ -1938,19 +1957,6 @@
     </div>
   </div>
 
-  <!-- CTA -->
-  <section id="cta">
-    <div class="orb-cta"></div>
-    <span class="section-label">Step Up</span>
-    <h2 class="section-title">Think You Have What It Takes?</h2>
-    <p class="section-sub" style="margin: 14px auto 44px; text-align: center;">Master+. 1.5 K/D. 800+ damage. If that's
-      you — we want to hear from you.</p>
-    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="#apply" class="btn-primary">Apply Now</a>
-      <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary">Join Discord</a>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer>
     <div class="footer-logo">
@@ -1958,9 +1964,9 @@
       <span class="footer-logo-text">LEGIT</span>
     </div>
     <div class="footer-links">
-      <a href="#features">Focus</a>
-      <a href="#requirements">Requirements</a>
+      <a href="#about">About</a>
       <a href="#streams">Streams</a>
+      <a href="#requirements">Requirements</a>
       <a href="#apply">Apply</a>
       <a href="https://discord.gg/YPsj22FFT" target="_blank">Discord</a>
     </div>
