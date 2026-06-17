@@ -1676,11 +1676,77 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* ── CUSTOM CURSOR ── */
+    @media (pointer: fine) {
+      body { cursor: none; }
+      a, button, [role="button"], .stream-card, .about-role-card, .req-card, .nav-link, label { cursor: none; }
+      #cursor {
+        position: fixed;
+        width: 22px;
+        height: 22px;
+        border: 1.5px solid rgba(255, 0, 0, 0.85);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        left: 0; top: 0;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, opacity 0.3s ease;
+        box-shadow: 0 0 8px rgba(255, 0, 0, 0.55), 0 0 20px rgba(255, 0, 0, 0.18);
+        will-change: transform;
+      }
+      #cursorDot {
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: #FF0000;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        left: 0; top: 0;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 6px rgba(255, 0, 0, 0.9);
+        will-change: transform;
+      }
+      #cursor.hovering {
+        width: 38px;
+        height: 38px;
+        border-color: rgba(255, 0, 0, 0.45);
+      }
+      #cursor.clicking {
+        transform: translate(-50%, -50%) scale(0.75);
+      }
+    }
+
+    /* ── SHIMMER ── */
+    .about-role-card, .req-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .stream-card::after,
+    .about-role-card::after,
+    .req-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.055) 50%, transparent 65%);
+      transform: translateX(-120%);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .stream-card:hover::after,
+    .about-role-card:hover::after,
+    .req-card:hover::after {
+      transform: translateX(120%);
+    }
   </style>
 </head>
 
 <body>
 
+  <div id="cursor"></div>
+  <div id="cursorDot"></div>
   <div id="toast"></div>
   <canvas id="starscape"></canvas>
   <div id="scrollProgress"></div>
@@ -2536,6 +2602,39 @@ Road to CC · Predator · ALGS 🔴`;
       if (logoVid) logoVid.style.display = 'none';
       hideLoader();
     }
+
+    // ── CUSTOM CURSOR ──
+    (function () {
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+      const cur = document.getElementById('cursor');
+      const dot = document.getElementById('cursorDot');
+      let mx = -100, my = -100;
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      });
+      (function moveCursor() {
+        cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+        requestAnimationFrame(moveCursor);
+      })();
+      document.addEventListener('mousedown', () => cur.classList.add('clicking'));
+      document.addEventListener('mouseup', () => cur.classList.remove('clicking'));
+      document.querySelectorAll('a, button, [role="button"], .stream-card, .about-role-card, .req-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cur.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => cur.classList.remove('hovering'));
+      });
+    })();
+
+    // ── 3D TILT ──
+    document.querySelectorAll('.stream-card, .about-role-card, .req-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(700px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateZ(6px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
   </script>
 </body>
 
