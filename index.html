@@ -2708,6 +2708,9 @@ Road to CC · Predator · ALGS 🔴`;
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
 
+  </script>
+
+  <script>
     // ── I18N ──
     const T = {
       en: {
@@ -2889,7 +2892,7 @@ Road to CC · Predator · ALGS 🔴`;
       btn.addEventListener('click', () => setLang(btn.dataset.lang))
     );
 
-    setLang(currentLang);
+    try { setLang(currentLang); } catch(e) {}
   </script>
 </body>
 
