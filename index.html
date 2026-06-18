@@ -1677,6 +1677,43 @@
       }
     }
 
+    /* ── LANG SWITCHER ── */
+    .lang-switcher { display: flex; gap: 4px; margin-left: 8px; }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45);
+      border-radius: 4px;
+      padding: 3px 7px;
+      font-size: 0.68rem;
+      font-family: 'JetBrains Mono', monospace;
+      cursor: none;
+      transition: all 0.2s;
+      letter-spacing: 1px;
+    }
+    .lang-btn:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
+    .lang-btn.active { color: #FF0000; border-color: rgba(255,0,0,0.5); background: rgba(255,0,0,0.08); }
+
+    /* ── RTL (Arabic) ── */
+    [dir="rtl"] .nav-inner { flex-direction: row-reverse; }
+    [dir="rtl"] .nav-links { flex-direction: row-reverse; }
+    [dir="rtl"] .lang-switcher { margin-left: 0; margin-right: 8px; }
+    [dir="rtl"] .hero-content { text-align: right; }
+    [dir="rtl"] .section-label,
+    [dir="rtl"] .section-title,
+    [dir="rtl"] .section-sub { text-align: right; }
+    [dir="rtl"] .about-header,
+    [dir="rtl"] .stats-header,
+    [dir="rtl"] .req-header,
+    [dir="rtl"] .apply-header { text-align: right; }
+    [dir="rtl"] .req-list { padding-right: 0; padding-left: 1.4rem; }
+    [dir="rtl"] .req-card-title { flex-direction: row-reverse; }
+    [dir="rtl"] .marquee-track { animation-direction: reverse; }
+    [dir="rtl"] .nav-visitors { flex-direction: row-reverse; }
+    [dir="rtl"] .footer-links { flex-direction: row-reverse; }
+    [dir="rtl"] .about-role-title { text-align: right; }
+    [dir="rtl"] .about-role-desc { text-align: right; }
+
     /* ── CUSTOM CURSOR ── */
     @media (pointer: fine) {
       body { cursor: none; }
@@ -1771,14 +1808,19 @@
             style="color:#FF0000">IT</span></span>
       </a>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#streams">Streams</a>
-        <a href="#requirements">Requirements</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#streams" data-i18n="nav_streams">Streams</a>
+        <a href="#requirements" data-i18n="nav_req">Requirements</a>
         <div class="nav-visitors">
           <span class="nav-visitors-dot"></span>
-          <span id="visitorCount">—</span>&nbsp;visitors
+          <span id="visitorCount">—</span>&nbsp;<span data-i18n="visitors">visitors</span>
         </div>
-        <a href="#apply" class="nav-cta">Apply Now</a>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ar">AR</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+        </div>
+        <a href="#apply" class="nav-cta" data-i18n="nav_apply">Apply Now</a>
       </div>
       <div id="navAuthArea" class="nav-auth-area">
         <a id="navLoginBtn" href="#" class="nav-login-btn">
@@ -1795,10 +1837,10 @@
   <!-- Mobile Menu -->
   <div class="nav-mobile" id="navMobile">
     <button class="nav-mobile-close" id="navMobileClose">✕</button>
-    <a href="#about">About</a>
-    <a href="#streams">Streams</a>
-    <a href="#requirements">Requirements</a>
-    <a href="#apply" class="nav-mobile-cta">Apply Now</a>
+    <a href="#about" data-i18n="nav_about">About</a>
+    <a href="#streams" data-i18n="nav_streams">Streams</a>
+    <a href="#requirements" data-i18n="nav_req">Requirements</a>
+    <a href="#apply" class="nav-mobile-cta" data-i18n="nav_apply">Apply Now</a>
   </div>
 
   <!-- Hero -->
@@ -1812,17 +1854,17 @@
     <div class="grid-overlay"></div>
     <div class="hero-orb"></div>
     <div class="hero-content">
-      <div class="hero-tag hero-enter">Apex Legends — Competitive Clan</div>
+      <div class="hero-tag hero-enter" data-i18n="hero_tag">Apex Legends — Competitive Clan</div>
       <h1 class="hero-title hero-enter" data-text="LEGIT"><span style="color:#9146FF">LE</span><span style="color:#72a2f5">G</span><span
           style="color:#FF0000">IT</span></h1>
-      <p class="hero-subtitle hero-enter">Road to <span>CC</span> &nbsp;·&nbsp; Predator &nbsp;·&nbsp; <span>ALGS</span></p>
+      <p class="hero-subtitle hero-enter" data-i18n="hero_sub">Road to <span>CC</span> &nbsp;·&nbsp; Predator &nbsp;·&nbsp; <span>ALGS</span></p>
       <div class="hero-buttons hero-enter">
-        <a href="#apply" class="btn-primary">Apply to Join</a>
-        <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary">Join Discord</a>
+        <a href="#apply" class="btn-primary" data-i18n="hero_apply">Apply to Join</a>
+        <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary" data-i18n="hero_discord">Join Discord</a>
       </div>
     </div>
     <div class="scroll-hint">
-      <span>Scroll</span>
+      <span data-i18n="hero_scroll">Scroll</span>
       <div class="scroll-arrow"></div>
     </div>
   </section>
@@ -1830,28 +1872,26 @@
   <!-- Stats -->
   <section id="stats">
     <div class="stats-header">
-      <span class="section-label">The Standard</span>
-      <h2 class="section-title">Minimum Requirements</h2>
-      <p class="section-sub" style="margin: 0 auto;">We set a high bar. Meet these to be considered for LEGIT
-        membership.
-      </p>
+      <span class="section-label" data-i18n="stats_label">The Standard</span>
+      <h2 class="section-title" data-i18n="stats_title">Minimum Requirements</h2>
+      <p class="section-sub" style="margin: 0 auto;" data-i18n="stats_sub">We set a high bar. Meet these to be considered for LEGIT membership.</p>
     </div>
     <div class="stats-grid">
       <div class="stat-item reveal">
         <span class="stat-number" data-target="1.5" data-suffix="+" data-decimals="1">0.0</span>
-        <span class="stat-label">Minimum K/D</span>
+        <span class="stat-label" data-i18n="stat1">Minimum K/D</span>
       </div>
       <div class="stat-item reveal">
         <span class="stat-number" data-target="800" data-suffix="+">0</span>
-        <span class="stat-label">Avg Damage</span>
+        <span class="stat-label" data-i18n="stat2">Avg Damage</span>
       </div>
       <div class="stat-item reveal">
         <span class="stat-number" data-static="true">MASTER</span>
-        <span class="stat-label">Minimum Rank</span>
+        <span class="stat-label" data-i18n="stat3">Minimum Rank</span>
       </div>
       <div class="stat-item reveal">
         <span class="stat-number" data-static="true">ACTIVE</span>
-        <span class="stat-label">Scrim Commitment</span>
+        <span class="stat-label" data-i18n="stat4">Scrim Commitment</span>
       </div>
     </div>
   </section>
@@ -1880,9 +1920,9 @@
 
   <!-- Streams -->
   <section id="streams">
-    <span class="section-label">Member Streams</span>
-    <h2 class="section-title">Watch Us Live</h2>
-    <p class="section-sub" style="margin: 0 auto;">Catch LEGIT members live on Twitch</p>
+    <span class="section-label" data-i18n="streams_label">Member Streams</span>
+    <h2 class="section-title" data-i18n="streams_title">Watch Us Live</h2>
+    <p class="section-sub" style="margin: 0 auto;" data-i18n="streams_sub">Catch LEGIT members live on Twitch</p>
     <div class="streams-grid">
 
       <div class="stream-card reveal" data-channel="zerth79">
@@ -1890,15 +1930,14 @@
           onerror="this.src='https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c1.png'">
         <span class="stream-badge offline" id="badge-zerth79">
           <span class="stream-badge-dot"></span>
-          <span class="badge-label">Offline</span>
+          <span class="badge-label" data-i18n="stream_offline">Offline</span>
         </span>
         <span class="stream-name">zerth79</span>
         <a class="stream-watch-btn" href="https://twitch.tv/zerth79" target="_blank">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
           </svg>
-          Watch on Twitch
+          <span data-i18n="stream_watch">Watch on Twitch</span>
         </a>
       </div>
 
@@ -1907,15 +1946,14 @@
           onerror="this.src='https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c1.png'">
         <span class="stream-badge offline" id="badge-rarely11">
           <span class="stream-badge-dot"></span>
-          <span class="badge-label">Offline</span>
+          <span class="badge-label" data-i18n="stream_offline">Offline</span>
         </span>
         <span class="stream-name">rarely11</span>
         <a class="stream-watch-btn" href="https://twitch.tv/rarely11" target="_blank">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
           </svg>
-          Watch on Twitch
+          <span data-i18n="stream_watch">Watch on Twitch</span>
         </a>
       </div>
 
@@ -1927,62 +1965,62 @@
   <!-- About / Recruitment -->
   <section id="about">
     <div class="about-header">
-      <span class="section-label">Recruiting Now</span>
-      <h2 class="section-title">Join LEGIT Clan</h2>
-      <p class="section-sub" style="margin: 0 auto;">We're building a serious long-term competitive roster — grinding ranked to high Predator, competing in scrims daily, and working toward Challenger Circuit and semi-pro level. If you're committed, this is your team.</p>
+      <span class="section-label" data-i18n="about_label">Recruiting Now</span>
+      <h2 class="section-title" data-i18n="about_title">Join LEGIT Clan</h2>
+      <p class="section-sub" style="margin: 0 auto;" data-i18n="about_sub">We're building a serious long-term competitive roster — grinding ranked to high Predator, competing in scrims daily, and working toward Challenger Circuit and semi-pro level. If you're committed, this is your team.</p>
     </div>
 
-    <span class="about-sub-label">What We Offer</span>
+    <span class="about-sub-label" data-i18n="offer_label">What We Offer</span>
     <div class="about-offer-grid">
       <div class="feature-card">
         <div class="feature-icon">⚔️</div>
-        <h3>Daily Scrims</h3>
-        <p>Organized daily scrim sessions against competitive teams to sharpen every aspect of your game.</p>
+        <h3 data-i18n="offer1_title">Daily Scrims</h3>
+        <p data-i18n="offer1_desc">Organized daily scrim sessions against competitive teams to sharpen every aspect of your game.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💎</div>
-        <h3>High Predator Grind</h3>
-        <p>Not just reaching Predator — maintaining a high Predator placement every season through focused ranked grinding.</p>
+        <h3 data-i18n="offer2_title">High Predator Grind</h3>
+        <p data-i18n="offer2_desc">Not just reaching Predator — maintaining a high Predator placement every season through focused ranked grinding.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🎬</div>
-        <h3>VOD Reviews</h3>
-        <p>Regular gameplay review sessions to break down mistakes, refine macro, and accelerate individual improvement.</p>
+        <h3 data-i18n="offer3_title">VOD Reviews</h3>
+        <p data-i18n="offer3_desc">Regular gameplay review sessions to break down mistakes, refine macro, and accelerate individual improvement.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🏆</div>
-        <h3>Community Tournaments</h3>
-        <p>Active participation in community cups and tournaments building a strong competitive track record.</p>
+        <h3 data-i18n="offer4_title">Community Tournaments</h3>
+        <p data-i18n="offer4_desc">Active participation in community cups and tournaments building a strong competitive track record.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🤝</div>
-        <h3>Team Chemistry</h3>
-        <p>Positive, drama-free environment built on trust, communication, and a shared drive to improve.</p>
+        <h3 data-i18n="offer5_title">Team Chemistry</h3>
+        <p data-i18n="offer5_desc">Positive, drama-free environment built on trust, communication, and a shared drive to improve.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🚀</div>
-        <h3>Long-Term Development</h3>
-        <p>We're building something lasting. A permanent roster with ambitions beyond ranked — toward ALGS and beyond.</p>
+        <h3 data-i18n="offer6_title">Long-Term Development</h3>
+        <p data-i18n="offer6_desc">We're building something lasting. A permanent roster with ambitions beyond ranked — toward ALGS and beyond.</p>
       </div>
     </div>
 
-    <span class="about-sub-label">Who We're Looking For</span>
+    <span class="about-sub-label" data-i18n="roles_label">Who We're Looking For</span>
     <div class="about-roles-grid">
       <div class="about-role-card reveal">
-        <div class="about-role-title">🎮 IGL</div>
-        <p class="about-role-desc">Experienced in-game leader with strong macro understanding, confident end-game calling, and the ability to make decisive calls under pressure.</p>
+        <div class="about-role-title">🎮 <span data-i18n="role_igl">IGL</span></div>
+        <p class="about-role-desc" data-i18n="role_igl_desc">Experienced in-game leader with strong macro understanding, confident end-game calling, and the ability to make decisive calls under pressure.</p>
       </div>
       <div class="about-role-card reveal">
-        <div class="about-role-title">💀 Fragger</div>
-        <p class="about-role-desc">Mechanical players who can confidently take fights, create openings for the team, and consistently perform in high-pressure ranked and scrim environments.</p>
+        <div class="about-role-title">💀 <span data-i18n="role_fragger">Fragger</span></div>
+        <p class="about-role-desc" data-i18n="role_fragger_desc">Mechanical players who can confidently take fights, create openings for the team, and consistently perform in high-pressure ranked and scrim environments.</p>
       </div>
       <div class="about-role-card reveal">
-        <div class="about-role-title">🛡️ Anchor / Refrag</div>
-        <p class="about-role-desc">Players with excellent positioning, teamfight awareness, and the ability to support engagements and clean up after the fragger opens fights.</p>
+        <div class="about-role-title">🛡️ <span data-i18n="role_anchor">Anchor / Refrag</span></div>
+        <p class="about-role-desc" data-i18n="role_anchor_desc">Players with excellent positioning, teamfight awareness, and the ability to support engagements and clean up after the fragger opens fights.</p>
       </div>
     </div>
 
-    <span class="about-sub-label" style="margin-top:8px;">Requirements</span>
+    <span class="about-sub-label" style="margin-top:8px;" data-i18n="req_pills_label">Requirements</span>
     <div class="about-reqs-strip">
       <span class="req-pill">18+</span>
       <span class="req-pill">PC Only</span>
@@ -1998,46 +2036,46 @@
   <!-- Requirements -->
   <section id="requirements">
     <div class="req-header">
-      <span class="section-label">Who We Want</span>
-      <h2 class="section-title">Membership Criteria</h2>
+      <span class="section-label" data-i18n="req_label">Who We Want</span>
+      <h2 class="section-title" data-i18n="req_title">Membership Criteria</h2>
     </div>
     <div class="requirements-grid">
       <div class="req-card required reveal">
         <div class="req-card-title">
-          <div class="dot"></div>Required
+          <div class="dot"></div><span data-i18n="req_required">Required</span>
         </div>
         <ul class="req-list">
-          <li>Current or Previous Master</li>
-          <li>1.5+ K/D Ratio</li>
-          <li>800+ Average Damage</li>
-          <li>Strong High-Rank Experience</li>
-          <li>Good Communication & Microphone</li>
-          <li>Active & Committed to Scrims</li>
-          <li>Controller & MnK Welcome</li>
+          <li data-i18n="req_r1">Diamond IV Minimum (Current Season)</li>
+          <li data-i18n="req_r2">1.5+ K/D Ratio</li>
+          <li data-i18n="req_r3">800+ Average Damage</li>
+          <li data-i18n="req_r4">PC Platform Only</li>
+          <li data-i18n="req_r5">Daily Availability (2h+ minimum)</li>
+          <li data-i18n="req_r6">Scrim Commitment (attend scheduled sessions)</li>
+          <li data-i18n="req_r7">VOD Review Participation</li>
         </ul>
       </div>
       <div class="req-card preferred reveal">
         <div class="req-card-title">
-          <div class="dot"></div>Preferred
+          <div class="dot"></div><span data-i18n="req_preferred">Preferred</span>
         </div>
         <ul class="req-list">
-          <li>Multi-Season Master</li>
-          <li>Former Predator</li>
-          <li>Scrim Experience</li>
-          <li>CC Experience</li>
-          <li>IGL / Fragger / Support Role</li>
+          <li data-i18n="req_p1">Multi-Season Master</li>
+          <li data-i18n="req_p2">Former Predator</li>
+          <li data-i18n="req_p3">Scrim Experience</li>
+          <li data-i18n="req_p4">CC Experience</li>
+          <li data-i18n="req_p5">IGL / Fragger / Support Role</li>
         </ul>
       </div>
       <div class="req-card rejected reveal">
         <div class="req-card-title">
-          <div class="dot"></div>Not Accepted
+          <div class="dot"></div><span data-i18n="req_rejected">Not Accepted</span>
         </div>
         <ul class="req-list">
-          <li>Hardstuck Diamond Players</li>
-          <li>Toxic Players</li>
-          <li>Cheaters / Exploit Users</li>
-          <li>Inactive Players</li>
-          <li>Poor Team Mentality</li>
+          <li data-i18n="req_j1">Hardstuck Diamond Players</li>
+          <li data-i18n="req_j2">Inconsistent Availability</li>
+          <li data-i18n="req_j3">Players with Toxic History</li>
+          <li data-i18n="req_j4">Console Players</li>
+          <li data-i18n="req_j5">Team Hoppers</li>
         </ul>
       </div>
     </div>
@@ -2056,32 +2094,30 @@
       </div>
 
       <div class="apply-header">
-        <span class="section-label">Join LEGIT</span>
-        <h2 class="section-title">Apply Now</h2>
-        <p class="section-sub" style="margin: 0 auto;">Fill out the form and provide proof of your stats. Only serious
-          applicants will be reviewed. <a href="https://discord.gg/YPsj22FFT" target="_blank"
-            style="color:var(--accent);">Join our Discord first</a> — then apply below.</p>
+        <span class="section-label" data-i18n="apply_label">Join LEGIT</span>
+        <h2 class="section-title" data-i18n="apply_title">Apply Now</h2>
+        <p class="section-sub" style="margin: 0 auto;" data-i18n="apply_sub">Fill out the form and provide proof of your stats. We review every application personally.</p>
       </div>
       <!-- Discord Login -->
       <div id="discordLoginBox" style="text-align:center; margin-bottom:32px;">
-        <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:14px;">Login with Discord to apply or check your status:</p>
+        <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:14px;" data-i18n="apply_login_text">Login with Discord to apply or check your status:</p>
         <a id="discordLoginBtn" class="btn-discord-login" href="#">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963a.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z"/></svg>
-          Login with Discord
+          <span data-i18n="apply_login_btn">Login with Discord</span>
         </a>
       </div>
 
       <form class="apply-form-el" id="applyForm" style="display:none">
         <div class="form-group">
-          <label>EA / Origin Username *</label>
-          <input type="text" id="eaUsername" placeholder="YourUsername" required>
+          <label data-i18n="form_ea">EA / Origin Username *</label>
+          <input type="text" id="eaUsername" placeholder="YourUsername" data-i18n-ph="form_username_ph" required>
         </div>
         <div class="form-group">
-          <label>Discord Username *</label>
-          <input type="text" id="discordUser" placeholder="username" required>
+          <label data-i18n="form_discord">Discord Username *</label>
+          <input type="text" id="discordUser" placeholder="username" data-i18n-ph="form_discord_ph" required>
         </div>
         <div class="form-group">
-          <label>Current Rank *</label>
+          <label data-i18n="form_rank">Current Rank *</label>
           <select id="rank" required>
             <option value="" disabled selected>Select your rank</option>
             <option>Master</option>
@@ -2091,19 +2127,19 @@
           </select>
         </div>
         <div class="form-group">
-          <label>K/D Ratio *</label>
-          <input type="number" id="kd" placeholder="e.g. 1.5" step="0.01" min="0" required>
+          <label data-i18n="form_kd">K/D Ratio *</label>
+          <input type="number" id="kd" placeholder="e.g. 1.5" data-i18n-ph="form_kd_ph" step="0.01" min="0" required>
         </div>
         <div class="form-group">
-          <label>Average Damage *</label>
-          <input type="number" id="avgDmg" placeholder="e.g. 800" min="0" required>
+          <label data-i18n="form_dmg">Average Damage *</label>
+          <input type="number" id="avgDmg" placeholder="e.g. 800" data-i18n-ph="form_dmg_ph" min="0" required>
         </div>
         <div class="form-group">
-          <label>Main Legend</label>
-          <input type="text" id="legend" placeholder="e.g. Wraith, Horizon">
+          <label data-i18n="form_legend">Main Legend</label>
+          <input type="text" id="legend" placeholder="e.g. Wraith, Horizon" data-i18n-ph="form_legend_ph">
         </div>
         <div class="form-group">
-          <label>Role</label>
+          <label data-i18n="form_role">Role</label>
           <select id="role">
             <option value="" disabled selected>Select role</option>
             <option>IGL (In-Game Leader)</option>
@@ -2113,7 +2149,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Platform *</label>
+          <label data-i18n="form_platform">Platform *</label>
           <select id="platform" required>
             <option value="" disabled selected>Select platform</option>
             <option>PC</option>
@@ -2122,7 +2158,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Input Device</label>
+          <label data-i18n="form_input">Input Device</label>
           <select id="inputDevice">
             <option value="" disabled selected>Select input</option>
             <option>Controller</option>
@@ -2130,23 +2166,23 @@
           </select>
         </div>
         <div class="form-group full">
-          <label>Stats Proof — Apex Tracker URL or Description</label>
+          <label data-i18n="form_proof">Stats Proof — Apex Tracker URL or Description</label>
           <textarea id="proofText"
-            placeholder="Paste your Apex Legends Tracker URL or describe your proof..."></textarea>
+            placeholder="Paste your Apex Legends Tracker URL or describe your proof..." data-i18n-ph="form_proof_ph"></textarea>
         </div>
         <div class="form-group full">
-          <label>Upload Screenshots</label>
+          <label data-i18n="form_upload">Upload Screenshots</label>
           <div class="file-upload-area" onclick="document.getElementById('proofFiles').click()">
             <input type="file" id="proofFiles" multiple accept="image/*">
             <div class="file-upload-text">
-              <span>Click to upload</span> or drag & drop<br>
+              <span data-i18n="form_upload_hint">Click to upload</span> or drag & drop<br>
               <small style="opacity:0.45; font-size:0.72rem; margin-top:4px; display:block;">PNG, JPG · Apex Tracker
                 screenshots preferred</small>
             </div>
             <div id="fileList"></div>
           </div>
         </div>
-        <button type="submit" class="btn-submit">Submit Application</button>
+        <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
       </form>
     </div>
   </section>
@@ -2154,13 +2190,12 @@
   <!-- Modal -->
   <div class="modal-overlay" id="appModal">
     <div class="modal">
-      <h3>Application Ready</h3>
-      <p>Copy your application below and paste it in the <strong>#apply</strong> channel in our Discord server. Attach
-        your screenshots there as well.</p>
+      <h3 data-i18n="modal_title">Application Ready</h3>
+      <p data-i18n="modal_text">Copy your application below and paste it in the <strong>#apply</strong> channel in our Discord server. Attach your screenshots there as well.</p>
       <div class="modal-app-text" id="appText"></div>
       <div class="modal-buttons">
-        <button class="btn-copy" id="copyBtn" onclick="copyApp()">Copy Text</button>
-        <a class="btn-discord" href="https://discord.gg/YPsj22FFT" target="_blank">Open Discord</a>
+        <button class="btn-copy" id="copyBtn" onclick="copyApp()" data-i18n="modal_copy">Copy Text</button>
+        <a class="btn-discord" href="https://discord.gg/YPsj22FFT" target="_blank" data-i18n="modal_discord">Open Discord</a>
       </div>
     </div>
   </div>
@@ -2172,14 +2207,13 @@
       <span class="footer-logo-text">LEGIT</span>
     </div>
     <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#streams">Streams</a>
-      <a href="#requirements">Requirements</a>
-      <a href="#apply">Apply</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#streams" data-i18n="nav_streams">Streams</a>
+      <a href="#requirements" data-i18n="nav_req">Requirements</a>
+      <a href="#apply" data-i18n="nav_apply">Apply Now</a>
       <a href="https://discord.gg/YPsj22FFT" target="_blank">Discord</a>
     </div>
-    <p class="footer-copy">&copy; 2026 LEGIT Clan &mdash; Apex Legends Competitive &nbsp;·&nbsp; Road to CC, Predator
-      &amp; ALGS</p>
+    <p class="footer-copy" data-i18n="footer_copy">&copy; 2026 LEGIT Clan &mdash; Apex Legends Competitive &nbsp;·&nbsp; Road to CC, Predator &amp; ALGS</p>
   </footer>
 
   <script>
@@ -2685,6 +2719,177 @@ Road to CC · Predator · ALGS 🔴`;
       });
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
+
+    // ── I18N ──
+    const T = {
+      en: {
+        nav_about:'About',nav_streams:'Streams',nav_req:'Requirements',nav_apply:'Apply Now',visitors:'visitors',
+        hero_tag:'Apex Legends — Competitive Clan',hero_sub:'Road to CC · Predator · ALGS',
+        hero_apply:'Apply to Join',hero_discord:'Join Discord',hero_scroll:'Scroll',
+        stats_label:'The Standard',stats_title:'Minimum Requirements',
+        stats_sub:'We set a high bar. Meet these to be considered for LEGIT membership.',
+        stat1:'Minimum K/D',stat2:'Avg Damage',stat3:'Minimum Rank',stat4:'Scrim Commitment',
+        streams_label:'Member Streams',streams_title:'Watch Us Live',
+        streams_sub:'Catch LEGIT members live on Twitch',
+        stream_watch:'Watch on Twitch',stream_offline:'Offline',stream_live:'Live',
+        about_label:'Recruiting Now',about_title:'Join LEGIT Clan',
+        about_sub:"We're building a serious long-term competitive roster. If you grind ranked every day, watch your own VODs, and want to compete in ALGS-level tournaments — you belong here.",
+        offer_label:'What We Offer',
+        offer1_title:'Daily Scrims',offer1_desc:'Organized daily scrim sessions with structured rotations and in-game leadership.',
+        offer2_title:'High Predator Grind',offer2_desc:'Not just reaching Predator — pushing for top placement and Challenger Circuit qualification.',
+        offer3_title:'VOD Reviews',offer3_desc:'Regular gameplay review sessions to analyze mistakes and improve team performance.',
+        offer4_title:'Community Tournaments',offer4_desc:'Active participation in community cups and online bracket competitions.',
+        offer5_title:'Team Chemistry',offer5_desc:'Positive, drama-free environment focused on performance and mutual improvement.',
+        offer6_title:'Long-Term Development',offer6_desc:"We're building something lasting. No roster flipping, no politics.",
+        roles_label:"Who We're Looking For",
+        role_igl:'IGL',role_igl_desc:'Strong shot-caller with macro game sense and the ability to lead under pressure.',
+        role_fragger:'Fragger',role_fragger_desc:'High-damage aggressive player comfortable taking 1v1s and entry fights.',
+        role_anchor:'Anchor / Refrag',role_anchor_desc:'The backbone. Holds space, cleans up fights, and enables the team.',
+        req_pills_label:'Requirements',req_label:'Who We Want',req_title:'Membership Criteria',
+        req_required:'Required',req_preferred:'Preferred',req_rejected:'Not Accepted',
+        req_r1:'Diamond IV Minimum (Current Season)',req_r2:'1.5+ K/D Ratio',req_r3:'800+ Average Damage',
+        req_r4:'PC Platform Only',req_r5:'Daily Availability (2h+ minimum)',
+        req_r6:'Scrim Commitment (attend scheduled sessions)',req_r7:'VOD Review Participation',
+        req_p1:'Multi-Season Master',req_p2:'Former Predator',req_p3:'Scrim Experience',req_p4:'CC Experience',req_p5:'IGL / Fragger / Support Role',
+        req_j1:'Hardstuck Diamond Players',req_j2:'Inconsistent Availability',req_j3:'Players with Toxic History',req_j4:'Console Players',req_j5:'Team Hoppers',
+        apply_label:'Join LEGIT',apply_title:'Apply Now',
+        apply_sub:'Fill out the form and provide proof of your stats. We review every application personally.',
+        apply_login_text:'Login with Discord to apply or check your status:',apply_login_btn:'Login with Discord',
+        form_ea:'EA / Origin Username',form_discord:'Discord Username',form_rank:'Current Rank',
+        form_kd:'K/D Ratio',form_dmg:'Average Damage',form_legend:'Main Legend',form_role:'Role',
+        form_platform:'Platform',form_input:'Input Device',
+        form_proof:'Stats Proof — Apex Tracker URL or Description',form_upload:'Upload Screenshots',
+        form_username_ph:'YourUsername',form_discord_ph:'username',form_kd_ph:'e.g. 1.5',
+        form_dmg_ph:'e.g. 800',form_legend_ph:'e.g. Wraith, Horizon',
+        form_proof_ph:'Paste your Apex Legends Tracker URL or describe your proof...',
+        form_submit:'Submit Application',form_upload_hint:'Click to upload',
+        modal_title:'Application Ready',
+        modal_text:'Copy your application below and paste it in the #apply channel in our Discord server. Attach your screenshots there as well.',
+        modal_copy:'Copy Text',modal_discord:'Open Discord',
+        footer_copy:'© 2026 LEGIT Clan — Apex Legends Competitive · Road to CC, Predator & ALGS',
+        toast_ok:'✓ Application sent to Discord!',toast_fail:'✗ Failed to send — try again',toast_net:'✗ Network error — try again',
+      },
+      ar: {
+        nav_about:'حول',nav_streams:'البث',nav_req:'المتطلبات',nav_apply:'سجّل الآن',visitors:'زائر',
+        hero_tag:'Apex Legends — كلان تنافسي',hero_sub:'طريق CC · Predator · ALGS',
+        hero_apply:'انضم إلينا',hero_discord:'انضم للديسكورد',hero_scroll:'اسكرول',
+        stats_label:'المعيار',stats_title:'الحد الأدنى من المتطلبات',
+        stats_sub:'نضع معياراً عالياً. حقق هذه الأرقام لتكون مرشحاً للانضمام.',
+        stat1:'الحد الأدنى K/D',stat2:'متوسط الضرر',stat3:'الحد الأدنى للرتبة',stat4:'الالتزام بالسكريم',
+        streams_label:'بث الأعضاء',streams_title:'شاهدنا مباشرة',
+        streams_sub:'تابع أعضاء LEGIT مباشرة على تويتش',
+        stream_watch:'شاهد على تويتش',stream_offline:'غير متصل',stream_live:'مباشر',
+        about_label:'التجنيد مفتوح',about_title:'انضم لكلان LEGIT',
+        about_sub:'نبني روستر تنافسي جاد على المدى البعيد. إذا كنت تطحن الرانكد يومياً، تراجع فيديوهاتك، وتريد المنافسة في بطولات مستوى ALGS — مكانك هنا.',
+        offer_label:'ما نقدمه',
+        offer1_title:'سكريم يومي',offer1_desc:'جلسات سكريم يومية منظمة مع روتيشن وقيادة داخل اللعبة.',
+        offer2_title:'طحن Predator بجدية',offer2_desc:'ليس فقط الوصول لـ Predator — بل الدفع نحو أعلى المراتب والتأهل لـ Challenger Circuit.',
+        offer3_title:'مراجعة الفيديوهات',offer3_desc:'جلسات منتظمة لمراجعة اللعب وتحليل الأخطاء وتحسين أداء الفريق.',
+        offer4_title:'بطولات المجتمع',offer4_desc:'مشاركة فعلية في كبّات المجتمع ومنافسات البراكيت أونلاين.',
+        offer5_title:'كيمياء الفريق',offer5_desc:'بيئة إيجابية وخالية من الدراما، تركيزها على الأداء والتطور المشترك.',
+        offer6_title:'تطوير على المدى البعيد',offer6_desc:'نبني شيئاً يدوم. لا تبديل في الروستر، لا سياسات.',
+        roles_label:'من نبحث عنه',
+        role_igl:'قائد اللعبة',role_igl_desc:'شات-كولر قوي لديه فهم ماكرو ويقدر يقود الفريق تحت الضغط.',
+        role_fragger:'المهاجم',role_fragger_desc:'لاعب هجومي بضرر عالٍ ومرتاح في الـ 1v1 وافتتاح المعارك.',
+        role_anchor:'الأنكر / ريفراق',role_anchor_desc:'العمود الفقري. يثبّت المواقع، يكمل المعارك، ويدعم الفريق.',
+        req_pills_label:'المتطلبات',req_label:'من نريده',req_title:'معايير العضوية',
+        req_required:'مطلوب',req_preferred:'مفضّل',req_rejected:'غير مقبول',
+        req_r1:'Diamond IV كحد أدنى (الموسم الحالي)',req_r2:'نسبة K/D لا تقل عن 1.5',req_r3:'متوسط ضرر 800+ للجولة',
+        req_r4:'PC فقط',req_r5:'توفر يومي (ساعتان على الأقل)',
+        req_r6:'الالتزام بجلسات السكريم المجدولة',req_r7:'المشاركة في مراجعة الفيديوهات',
+        req_p1:'Master لعدة مواسم',req_p2:'Predator سابق',req_p3:'خبرة في السكريم',req_p4:'خبرة في CC',req_p5:'دور IGL أو Fragger أو Support',
+        req_j1:'لاعبون عالقون في Diamond',req_j2:'توفر غير منتظم',req_j3:'لاعبون بتاريخ سلوكي سيء',req_j4:'لاعبو كونسول',req_j5:'كثيرو التنقل بين الكلانات',
+        apply_label:'انضم لـ LEGIT',apply_title:'سجّل الآن',
+        apply_sub:'املأ النموذج وأثبت إحصائياتك. نراجع كل طلب بشكل شخصي.',
+        apply_login_text:'سجّل دخول بالديسكورد للتقديم أو متابعة حالة طلبك:',apply_login_btn:'تسجيل بالديسكورد',
+        form_ea:'اسم EA / Origin',form_discord:'اسم الديسكورد',form_rank:'رتبتك الحالية',
+        form_kd:'نسبة K/D',form_dmg:'متوسط الضرر',form_legend:'الليجيند الرئيسي',form_role:'دورك',
+        form_platform:'المنصة',form_input:'طريقة التحكم',
+        form_proof:'إثبات الإحصائيات — رابط Apex Tracker أو وصف',form_upload:'رفع لقطات الشاشة',
+        form_username_ph:'اسمك في اللعبة',form_discord_ph:'username',form_kd_ph:'مثال: 1.5',
+        form_dmg_ph:'مثال: 800',form_legend_ph:'مثال: Wraith، Horizon',
+        form_proof_ph:'الصق رابط Apex Tracker أو اشرح إحصائياتك...',
+        form_submit:'إرسال الطلب',form_upload_hint:'اضغط للرفع',
+        modal_title:'الطلب جاهز',
+        modal_text:'انسخ طلبك أدناه والصقه في قناة #apply في ديسكورد الكلان. أرفق لقطات الشاشة هناك أيضاً.',
+        modal_copy:'نسخ النص',modal_discord:'فتح الديسكورد',
+        footer_copy:'© 2026 LEGIT Clan — Apex Legends التنافسي · طريق CC و Predator و ALGS',
+        toast_ok:'✓ تم إرسال الطلب للديسكورد!',toast_fail:'✗ فشل الإرسال — حاول مرة أخرى',toast_net:'✗ خطأ في الشبكة — حاول مرة أخرى',
+      },
+      ru: {
+        nav_about:'О нас',nav_streams:'Стримы',nav_req:'Требования',nav_apply:'Подать заявку',visitors:'посетителей',
+        hero_tag:'Apex Legends — Соревновательный клан',hero_sub:'Путь к CC · Predator · ALGS',
+        hero_apply:'Вступить',hero_discord:'Войти в Discord',hero_scroll:'Листать',
+        stats_label:'Стандарт',stats_title:'Минимальные требования',
+        stats_sub:'Мы держим высокую планку. Выполни эти условия, чтобы попасть в LEGIT.',
+        stat1:'Мин. K/D',stat2:'Сред. урон',stat3:'Мин. ранг',stat4:'Скримы',
+        streams_label:'Стримы участников',streams_title:'Смотри нас вживую',
+        streams_sub:'Смотри участников LEGIT вживую на Twitch',
+        stream_watch:'Смотреть на Twitch',stream_offline:'Оффлайн',stream_live:'В эфире',
+        about_label:'Идёт набор',about_title:'Вступи в LEGIT Clan',
+        about_sub:'Мы строим серьёзный долгосрочный состав. Если ты каждый день гриндишь ранк, смотришь свои VOD и хочешь участвовать в турнирах уровня ALGS — ты на своём месте.',
+        offer_label:'Что мы предлагаем',
+        offer1_title:'Ежедневные скримы',offer1_desc:'Организованные ежедневные скрим-сессии с чёткими ротациями и внутриигровым лидерством.',
+        offer2_title:'Гринд Predator',offer2_desc:'Не просто достичь Predator — мы метим в топ и квалификацию на Challenger Circuit.',
+        offer3_title:'VOD-разборы',offer3_desc:'Регулярные сессии разбора геймплея для анализа ошибок и улучшения командной игры.',
+        offer4_title:'Командные турниры',offer4_desc:'Активное участие в комьюнити-кубках и онлайн-турнирах.',
+        offer5_title:'Командная химия',offer5_desc:'Позитивная атмосфера без токсичности, сфокусированная на результате и взаимном росте.',
+        offer6_title:'Долгосрочное развитие',offer6_desc:'Мы строим что-то стабильное. Никакой ротации состава, никакой политики.',
+        roles_label:'Кого мы ищем',
+        role_igl:'IGL',role_igl_desc:'Сильный шот-коллер с макро-пониманием игры и способностью вести команду под давлением.',
+        role_fragger:'Фраггер',role_fragger_desc:'Агрессивный игрок с высоким уроном, готовый к 1v1 и вскрытию позиций.',
+        role_anchor:'Анкор / Рефраг',role_anchor_desc:'Опора команды. Удерживает позиции, добивает врагов и поддерживает команду.',
+        req_pills_label:'Требования',req_label:'Кого мы хотим',req_title:'Критерии членства',
+        req_required:'Обязательно',req_preferred:'Желательно',req_rejected:'Не принимаем',
+        req_r1:'Diamond IV минимум (текущий сезон)',req_r2:'K/D от 1.5 и выше',req_r3:'Средний урон 800+ за раунд',
+        req_r4:'Только PC',req_r5:'Ежедневная доступность (минимум 2 часа)',
+        req_r6:'Обязательное посещение скримов',req_r7:'Участие в VOD-разборах',
+        req_p1:'Master несколько сезонов подряд',req_p2:'Бывший Predator',req_p3:'Опыт в скримах',req_p4:'Опыт в CC',req_p5:'Роль IGL, Фраггера или Саппорта',
+        req_j1:'Застрявшие в Diamond игроки',req_j2:'Непостоянная доступность',req_j3:'Игроки с токсичной историей',req_j4:'Консольные игроки',req_j5:'Перебежчики из клана в клан',
+        apply_label:'Вступи в LEGIT',apply_title:'Подать заявку',
+        apply_sub:'Заполни анкету и прикрепи доказательства статистики. Мы рассматриваем каждую заявку лично.',
+        apply_login_text:'Войди через Discord, чтобы подать заявку или проверить её статус:',apply_login_btn:'Войти через Discord',
+        form_ea:'EA / Origin никнейм',form_discord:'Discord никнейм',form_rank:'Текущий ранг',
+        form_kd:'K/D',form_dmg:'Средний урон',form_legend:'Основной легенд',form_role:'Роль',
+        form_platform:'Платформа',form_input:'Устройство управления',
+        form_proof:'Подтверждение статистики — ссылка Apex Tracker или описание',form_upload:'Загрузить скриншоты',
+        form_username_ph:'ТвойНикнейм',form_discord_ph:'username',form_kd_ph:'напр. 1.5',
+        form_dmg_ph:'напр. 800',form_legend_ph:'напр. Wraith, Horizon',
+        form_proof_ph:'Вставь ссылку на Apex Tracker или опиши свою статистику...',
+        form_submit:'Отправить заявку',form_upload_hint:'Нажмите для загрузки',
+        modal_title:'Заявка готова',
+        modal_text:'Скопируй заявку ниже и вставь её в канал #apply на нашем Discord сервере. Прикрепи скриншоты там же.',
+        modal_copy:'Копировать текст',modal_discord:'Открыть Discord',
+        footer_copy:'© 2026 LEGIT Clan — Apex Legends Соревновательный · Путь к CC, Predator и ALGS',
+        toast_ok:'✓ Заявка отправлена в Discord!',toast_fail:'✗ Ошибка отправки — попробуй снова',toast_net:'✗ Ошибка сети — попробуй снова',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = T[lang][el.dataset.i18n];
+        if (v) el.textContent = v;
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const v = T[lang][el.dataset.i18nPh];
+        if (v) el.placeholder = v;
+      });
+      document.querySelectorAll('.lang-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.lang === lang)
+      );
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn =>
+      btn.addEventListener('click', () => setLang(btn.dataset.lang))
+    );
+
+    setLang(currentLang);
   </script>
 </body>
 
