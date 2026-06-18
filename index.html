@@ -346,6 +346,23 @@
       text-shadow: 0 2px 40px rgba(0, 0, 0, 0.9), 0 0 80px rgba(0, 0, 0, 0.6);
     }
 
+    .ht-l {
+      display: inline-block;
+      opacity: 0;
+      animation: htSmash 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: calc(var(--i) * 0.1s + 0.15s);
+    }
+
+    @keyframes htSmash {
+      0%   { opacity: 0; transform: translateY(-90px) scaleY(2.8) scaleX(0.4); filter: blur(14px); }
+      55%  { opacity: 1; transform: translateY(7px) scaleY(0.86) scaleX(1.06); filter: blur(0);
+             text-shadow: 0 0 60px currentColor, 0 0 120px currentColor; }
+      75%  { transform: translateY(-3px) scaleY(1.04) scaleX(0.98);
+             text-shadow: 0 0 20px currentColor; }
+      100% { opacity: 1; transform: translateY(0) scaleY(1) scaleX(1);
+             text-shadow: 0 0 8px rgba(255,255,255,0.1); }
+    }
+
     .hero-tag {
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
     }
@@ -1993,8 +2010,7 @@
     <div class="hero-orb"></div>
     <div class="hero-content">
       <div class="hero-tag hero-enter" data-i18n="hero_tag">Apex Legends — Competitive Esports</div>
-      <h1 class="hero-title hero-enter" data-text="LEGIT"><span style="color:#9146FF">LE</span><span
-          style="color:#72a2f5">G</span><span style="color:#FF0000">IT</span></h1>
+      <h1 class="hero-title" data-text="LEGIT"><span class="ht-l" style="color:#9146FF;--i:0">L</span><span class="ht-l" style="color:#9146FF;--i:1">E</span><span class="ht-l" style="color:#72a2f5;--i:2">G</span><span class="ht-l" style="color:#FF0000;--i:3">I</span><span class="ht-l" style="color:#FF0000;--i:4">T</span></h1>
       <p class="hero-subtitle hero-enter" data-i18n="hero_sub">ROAD TO ESPORTS</p>
       <div class="hero-buttons hero-enter">
         <a href="#apply" class="btn-primary" data-i18n="hero_apply">Apply to Join</a>
