@@ -2446,9 +2446,10 @@
             document.getElementById('applyForm').style.display = 'none';
             document.getElementById('statusIcon').textContent = '⏳';
             const t = document.getElementById('statusTag');
-            t.textContent = 'UNDER REVIEW'; t.className = 'status-tag pending';
-            document.getElementById('statusTitle').textContent = 'Application Received';
-            document.getElementById('statusSub').textContent = "Your application is being reviewed. We'll reach out via Discord once a decision has been made.";
+            const L2 = T[currentLang];
+            t.textContent = L2.status_pending_tag; t.className = 'status-tag pending';
+            document.getElementById('statusTitle').textContent = L2.status_pending_title;
+            document.getElementById('statusSub').textContent = L2.status_pending_sub;
             document.getElementById('statusPanel').classList.add('visible');
           } else {
             showToast('✗ Failed to send — try again', 'error');
@@ -2603,29 +2604,26 @@ Road to CC · Predator · ALGS 🔴`;
 
       panel.classList.add('visible');
 
+      const L = T[currentLang];
       const configs = {
         accepted: {
-          icon: '✅', tagClass: 'accepted', tagText: 'ACCEPTED',
-          titleText: 'Welcome to LEGIT',
-          subText: 'Your application has been accepted. Check your Discord DMs for next steps.',
-          actionText: 'Join Discord', actionHref: 'https://discord.gg/YPsj22FFT', showForm: false
+          icon: '✅', tagClass: 'accepted', tagText: L.status_accepted_tag,
+          titleText: L.status_accepted_title, subText: L.status_accepted_sub,
+          actionText: L.status_accepted_action, actionHref: 'https://discord.gg/YPsj22FFT', showForm: false
         },
         pending: {
-          icon: '⏳', tagClass: 'pending', tagText: 'UNDER REVIEW',
-          titleText: 'Application Received',
-          subText: 'Your application is being reviewed. We\'ll reach out via Discord once a decision has been made.',
+          icon: '⏳', tagClass: 'pending', tagText: L.status_pending_tag,
+          titleText: L.status_pending_title, subText: L.status_pending_sub,
           actionText: null, showForm: false
         },
         rejected: {
-          icon: '❌', tagClass: 'rejected', tagText: 'NOT ACCEPTED',
-          titleText: 'Application Not Accepted',
-          subText: 'Unfortunately your application was not accepted at this time. You are welcome to apply again below.',
+          icon: '❌', tagClass: 'rejected', tagText: L.status_rejected_tag,
+          titleText: L.status_rejected_title, subText: L.status_rejected_sub,
           actionText: null, showForm: true
         },
         error: {
-          icon: '⚠️', tagClass: 'rejected', tagText: 'ERROR',
-          titleText: 'Something went wrong',
-          subText: 'Please try logging in again.',
+          icon: '⚠️', tagClass: 'rejected', tagText: L.status_error_tag,
+          titleText: L.status_error_title, subText: L.status_error_sub,
           actionText: null, showForm: true
         }
       };
@@ -2758,6 +2756,10 @@ Road to CC · Predator · ALGS 🔴`;
         modal_copy:'Copy Text',modal_discord:'Open Discord',
         footer_copy:'© 2026 LEGIT Clan — Apex Legends Competitive · Road to CC, Predator & ALGS',
         toast_ok:'✓ Application sent to Discord!',toast_fail:'✗ Failed to send — try again',toast_net:'✗ Network error — try again',
+        status_accepted_tag:'ACCEPTED',status_accepted_title:'Welcome to LEGIT',status_accepted_sub:'Your application has been accepted. Check your Discord DMs for next steps.',status_accepted_action:'Join Discord',
+        status_pending_tag:'UNDER REVIEW',status_pending_title:'Application Received',status_pending_sub:"Your application is being reviewed. We'll reach out via Discord once a decision has been made.",
+        status_rejected_tag:'NOT ACCEPTED',status_rejected_title:'Application Not Accepted',status_rejected_sub:'Unfortunately your application was not accepted at this time. You are welcome to apply again below.',
+        status_error_tag:'ERROR',status_error_title:'Something went wrong',status_error_sub:'Please try logging in again.',
       },
       ar: {
         nav_about:'حول',nav_streams:'البث',nav_req:'المتطلبات',nav_apply:'سجّل الآن',visitors:'زائر',
@@ -2805,6 +2807,10 @@ Road to CC · Predator · ALGS 🔴`;
         modal_copy:'نسخ النص',modal_discord:'فتح الديسكورد',
         footer_copy:'© 2026 LEGIT Clan — Apex Legends التنافسي · طريق CC و Predator و ALGS',
         toast_ok:'✓ تم إرسال الطلب للديسكورد!',toast_fail:'✗ فشل الإرسال — حاول مرة أخرى',toast_net:'✗ خطأ في الشبكة — حاول مرة أخرى',
+        status_accepted_tag:'مقبول',status_accepted_title:'مرحباً بك في LEGIT',status_accepted_sub:'تم قبول طلبك. تحقق من رسائل الديسكورد للخطوات التالية.',status_accepted_action:'انضم للديسكورد',
+        status_pending_tag:'قيد المراجعة',status_pending_title:'تم استلام الطلب',status_pending_sub:'طلبك قيد المراجعة. سنتواصل معك عبر الديسكورد بعد اتخاذ القرار.',
+        status_rejected_tag:'غير مقبول',status_rejected_title:'لم يتم قبول الطلب',status_rejected_sub:'للأسف لم يتم قبول طلبك في الوقت الحالي. يمكنك التقديم مجدداً أدناه.',
+        status_error_tag:'خطأ',status_error_title:'حدث خطأ ما',status_error_sub:'يرجى تسجيل الدخول مرة أخرى.',
       },
       ru: {
         nav_about:'О нас',nav_streams:'Стримы',nav_req:'Требования',nav_apply:'Подать заявку',visitors:'посетителей',
@@ -2852,6 +2858,10 @@ Road to CC · Predator · ALGS 🔴`;
         modal_copy:'Копировать текст',modal_discord:'Открыть Discord',
         footer_copy:'© 2026 LEGIT Clan — Apex Legends Соревновательный · Путь к CC, Predator и ALGS',
         toast_ok:'✓ Заявка отправлена в Discord!',toast_fail:'✗ Ошибка отправки — попробуй снова',toast_net:'✗ Ошибка сети — попробуй снова',
+        status_accepted_tag:'ПРИНЯТ',status_accepted_title:'Добро пожаловать в LEGIT',status_accepted_sub:'Твоя заявка принята. Проверь личные сообщения в Discord.',status_accepted_action:'Войти в Discord',
+        status_pending_tag:'НА РАССМОТРЕНИИ',status_pending_title:'Заявка получена',status_pending_sub:'Твоя заявка рассматривается. Мы свяжемся с тобой в Discord после принятия решения.',
+        status_rejected_tag:'НЕ ПРИНЯТ',status_rejected_title:'Заявка не принята',status_rejected_sub:'К сожалению, твоя заявка не была принята. Ты можешь подать заявку снова ниже.',
+        status_error_tag:'ОШИБКА',status_error_title:'Что-то пошло не так',status_error_sub:'Попробуй войти снова.',
       }
     };
 
