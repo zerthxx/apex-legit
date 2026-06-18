@@ -5,17 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LEGIT — Apex Legends Competitive Esports</title>
-  <meta property="og:type"         content="website">
-  <meta property="og:url"          content="https://zerthxx.github.io/apex-legit/">
-  <meta property="og:title"        content="LEGIT — Apex Legends Competitive Esports">
-  <meta property="og:description"  content="Competitive Apex Legends esports org recruiting Predator & Masters players. ALGS-level scrims, VOD reviews, and structured ranked grinding.">
-  <meta property="og:image"        content="https://zerthxx.github.io/apex-legit/logo.png">
-  <meta property="og:image:width"  content="512">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zerthxx.github.io/apex-legit/">
+  <meta property="og:title" content="LEGIT — Apex Legends Competitive Esports">
+  <meta property="og:description"
+    content="Competitive Apex Legends esports org recruiting Predator & Masters players. ALGS-level scrims, VOD reviews, and structured ranked grinding.">
+  <meta property="og:image" content="https://zerthxx.github.io/apex-legit/logo.png">
+  <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
-  <meta name="twitter:card"        content="summary">
-  <meta name="twitter:title"       content="LEGIT — Apex Legends Competitive Esports">
-  <meta name="twitter:description" content="Competitive Apex Legends esports org recruiting Predator & Masters players. ALGS-level scrims, VOD reviews, and structured ranked grinding.">
-  <meta name="twitter:image"       content="https://zerthxx.github.io/apex-legit/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LEGIT — Apex Legends Competitive Esports">
+  <meta name="twitter:description"
+    content="Competitive Apex Legends esports org recruiting Predator & Masters players. ALGS-level scrims, VOD reviews, and structured ranked grinding.">
+  <meta name="twitter:image" content="https://zerthxx.github.io/apex-legit/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -448,8 +450,15 @@
 
     /* ── HERO ENTRANCE ── */
     @keyframes heroFadeIn {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-enter {
@@ -462,13 +471,40 @@
 
     /* ── GLITCH ── */
     @keyframes glitch {
-      0%   { clip-path: inset(40% 0 61% 0); transform: translate(-3px, 0); }
-      5%   { clip-path: inset(92% 0 1% 0);  transform: translate(3px, 0); }
-      10%  { clip-path: inset(20% 0 70% 0); transform: translate(-3px, 0); }
-      15%  { clip-path: inset(60% 0 30% 0); transform: translate(3px, 0); }
-      20%  { clip-path: inset(10% 0 85% 0); transform: translate(-2px, 0); }
-      25%  { clip-path: inset(0% 0 100% 0); transform: translate(0, 0); }
-      100% { clip-path: inset(0% 0 100% 0); transform: translate(0, 0); }
+      0% {
+        clip-path: inset(40% 0 61% 0);
+        transform: translate(-3px, 0);
+      }
+
+      5% {
+        clip-path: inset(92% 0 1% 0);
+        transform: translate(3px, 0);
+      }
+
+      10% {
+        clip-path: inset(20% 0 70% 0);
+        transform: translate(-3px, 0);
+      }
+
+      15% {
+        clip-path: inset(60% 0 30% 0);
+        transform: translate(3px, 0);
+      }
+
+      20% {
+        clip-path: inset(10% 0 85% 0);
+        transform: translate(-2px, 0);
+      }
+
+      25% {
+        clip-path: inset(0% 0 100% 0);
+        transform: translate(0, 0);
+      }
+
+      100% {
+        clip-path: inset(0% 0 100% 0);
+        transform: translate(0, 0);
+      }
     }
 
     .hero-title {
@@ -479,7 +515,8 @@
     .hero-title::after {
       content: attr(data-text);
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       font-family: 'Bebas Neue', Impact, sans-serif;
       font-size: inherit;
@@ -536,8 +573,13 @@
     }
 
     @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     .marquee-item {
@@ -725,13 +767,23 @@
     }
 
     @media (max-width: 1024px) {
-      .about-offer-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-roles-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-offer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-roles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
-      .about-offer-grid { grid-template-columns: 1fr; }
-      .about-roles-grid { grid-template-columns: 1fr; }
+      .about-offer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-roles-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ── FEATURES ── */
@@ -1016,8 +1068,15 @@
     }
 
     @keyframes submitPulse {
-      0%, 100% { box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.28); }
-      50% { box-shadow: 0 0 36px rgba(var(--accent-rgb), 0.5); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.28);
+      }
+
+      50% {
+        box-shadow: 0 0 36px rgba(var(--accent-rgb), 0.5);
+      }
     }
 
     .btn-submit {
@@ -1398,13 +1457,18 @@
       padding: 48px 32px;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      background: rgba(255,255,255,0.02);
+      background: rgba(255, 255, 255, 0.02);
       margin-bottom: 40px;
     }
 
-    #statusPanel.visible { display: block; }
+    #statusPanel.visible {
+      display: block;
+    }
 
-    .status-icon { font-size: 3rem; margin-bottom: 16px; }
+    .status-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
 
     .status-tag {
       font-family: 'JetBrains Mono', monospace;
@@ -1417,9 +1481,23 @@
       margin-bottom: 18px;
     }
 
-    .status-tag.accepted { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
-    .status-tag.pending  { background: rgba(251,191,36,0.1);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
-    .status-tag.rejected { background: rgba(255,0,0,0.08);    color: #ff6b6b; border: 1px solid rgba(255,0,0,0.2); }
+    .status-tag.accepted {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .status-tag.pending {
+      background: rgba(251, 191, 36, 0.1);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .status-tag.rejected {
+      background: rgba(255, 0, 0, 0.08);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 0, 0, 0.2);
+    }
 
     .status-title {
       font-family: 'Bebas Neue', sans-serif;
@@ -1452,10 +1530,13 @@
 
     .btn-discord-login:hover {
       background: #4752c4;
-      box-shadow: 0 0 20px rgba(88,101,242,0.4);
+      box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
     }
 
-    .nav-auth-area { display: flex; align-items: center; }
+    .nav-auth-area {
+      display: flex;
+      align-items: center;
+    }
 
     .nav-login-btn {
       display: inline-flex;
@@ -1472,20 +1553,24 @@
       transition: background 0.2s;
       white-space: nowrap;
     }
-    .nav-login-btn:hover { background: #4752c4; }
+
+    .nav-login-btn:hover {
+      background: #4752c4;
+    }
 
     .nav-user-chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(88,101,242,0.15);
-      border: 1px solid rgba(88,101,242,0.3);
+      background: rgba(88, 101, 242, 0.15);
+      border: 1px solid rgba(88, 101, 242, 0.3);
       color: #fff;
       padding: 6px 14px;
       border-radius: var(--radius);
       font-size: 0.82rem;
       white-space: nowrap;
     }
+
     .nav-logout {
       color: var(--text-secondary);
       font-size: 0.7rem;
@@ -1672,17 +1757,22 @@
         padding: 40px 20px 28px;
       }
 
-.streams-grid {
+      .streams-grid {
         grid-template-columns: 1fr;
       }
     }
 
     /* ── LANG SWITCHER ── */
-    .lang-switcher { display: flex; gap: 4px; margin-left: 8px; }
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      margin-left: 8px;
+    }
+
     .lang-btn {
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.45);
       border-radius: 4px;
       padding: 3px 7px;
       font-size: 0.68rem;
@@ -1691,23 +1781,70 @@
       transition: all 0.2s;
       letter-spacing: 1px;
     }
-    .lang-btn:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
-    .lang-btn.active { color: #FF0000; border-color: rgba(255,0,0,0.5); background: rgba(255,0,0,0.08); }
+
+    .lang-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .lang-btn.active {
+      color: #FF0000;
+      border-color: rgba(255, 0, 0, 0.5);
+      background: rgba(255, 0, 0, 0.08);
+    }
 
     /* ── RTL (Arabic) ── */
-    [dir="rtl"] .nav-inner { flex-direction: row-reverse; }
-    [dir="rtl"] .nav-links { flex-direction: row-reverse; }
-    [dir="rtl"] .lang-switcher { margin-left: 0; margin-right: 8px; }
-    [dir="rtl"] .req-list { padding-right: 0; padding-left: 1.4rem; }
-    [dir="rtl"] .req-card-title { flex-direction: row-reverse; }
-    [dir="rtl"] .marquee-track { animation-direction: reverse; }
-    [dir="rtl"] .nav-visitors { flex-direction: row-reverse; }
-    [dir="rtl"] .footer-links { flex-direction: row-reverse; }
+    [dir="rtl"] .nav-inner {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .nav-links {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .lang-switcher {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+
+    [dir="rtl"] .req-list {
+      padding-right: 0;
+      padding-left: 1.4rem;
+    }
+
+    [dir="rtl"] .req-card-title {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .marquee-track {
+      animation-direction: reverse;
+    }
+
+    [dir="rtl"] .nav-visitors {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .footer-links {
+      flex-direction: row-reverse;
+    }
 
     /* ── CUSTOM CURSOR ── */
     @media (pointer: fine) {
-      body { cursor: none; }
-      a, button, [role="button"], .stream-card, .about-role-card, .req-card, .nav-link, label { cursor: none; }
+      body {
+        cursor: none;
+      }
+
+      a,
+      button,
+      [role="button"],
+      .stream-card,
+      .about-role-card,
+      .req-card,
+      .nav-link,
+      label {
+        cursor: none;
+      }
+
       #cursor {
         position: fixed;
         width: 22px;
@@ -1716,12 +1853,14 @@
         border-radius: 50%;
         pointer-events: none;
         z-index: 99999;
-        left: 0; top: 0;
+        left: 0;
+        top: 0;
         transform: translate(-50%, -50%);
         transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, opacity 0.3s ease;
         box-shadow: 0 0 8px rgba(255, 0, 0, 0.55), 0 0 20px rgba(255, 0, 0, 0.18);
         will-change: transform;
       }
+
       #cursorDot {
         position: fixed;
         width: 4px;
@@ -1730,38 +1869,44 @@
         border-radius: 50%;
         pointer-events: none;
         z-index: 99999;
-        left: 0; top: 0;
+        left: 0;
+        top: 0;
         transform: translate(-50%, -50%);
         box-shadow: 0 0 6px rgba(255, 0, 0, 0.9);
         will-change: transform;
       }
+
       #cursor.hovering {
         width: 38px;
         height: 38px;
         border-color: rgba(255, 0, 0, 0.45);
       }
+
       #cursor.clicking {
         transform: translate(-50%, -50%) scale(0.75);
       }
     }
 
     /* ── SHIMMER ── */
-    .about-role-card, .req-card {
+    .about-role-card,
+    .req-card {
       position: relative;
       overflow: hidden;
     }
+
     .stream-card::after,
     .about-role-card::after,
     .req-card::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.055) 50%, transparent 65%);
+      background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.055) 50%, transparent 65%);
       transform: translateX(-120%);
       transition: transform 0.6s ease;
       pointer-events: none;
       z-index: 1;
     }
+
     .stream-card:hover::after,
     .about-role-card:hover::after,
     .req-card:hover::after {
@@ -1814,7 +1959,10 @@
       </div>
       <div id="navAuthArea" class="nav-auth-area">
         <a id="navLoginBtn" href="#" class="nav-login-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963a.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963a.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z" />
+          </svg>
           Login
         </a>
       </div>
@@ -1845,12 +1993,14 @@
     <div class="hero-orb"></div>
     <div class="hero-content">
       <div class="hero-tag hero-enter" data-i18n="hero_tag">Apex Legends — Competitive Esports</div>
-      <h1 class="hero-title hero-enter" data-text="LEGIT"><span style="color:#9146FF">LE</span><span style="color:#72a2f5">G</span><span
-          style="color:#FF0000">IT</span></h1>
-      <p class="hero-subtitle hero-enter" data-i18n="hero_sub">Road to <span>CC</span> &nbsp;·&nbsp; Predator &nbsp;·&nbsp; <span>ALGS</span></p>
+      <h1 class="hero-title hero-enter" data-text="LEGIT"><span style="color:#9146FF">LE</span><span
+          style="color:#72a2f5">G</span><span style="color:#FF0000">IT</span></h1>
+      <p class="hero-subtitle hero-enter" data-i18n="hero_sub">Road to <span>CC</span> &nbsp;·&nbsp; Predator
+        &nbsp;·&nbsp; <span>ALGS</span></p>
       <div class="hero-buttons hero-enter">
         <a href="#apply" class="btn-primary" data-i18n="hero_apply">Apply to Join</a>
-        <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary" data-i18n="hero_discord">Join Discord</a>
+        <a href="https://discord.gg/YPsj22FFT" target="_blank" class="btn-secondary" data-i18n="hero_discord">Join
+          Discord</a>
       </div>
     </div>
     <div class="scroll-hint">
@@ -1864,7 +2014,8 @@
     <div class="stats-header">
       <span class="section-label" data-i18n="stats_label">The Standard</span>
       <h2 class="section-title" data-i18n="stats_title">Minimum Requirements</h2>
-      <p class="section-sub" style="margin: 0 auto;" data-i18n="stats_sub">We set a high bar. Meet these to be considered for LEGIT membership.</p>
+      <p class="section-sub" style="margin: 0 auto;" data-i18n="stats_sub">We set a high bar. Meet these to be
+        considered for LEGIT membership.</p>
     </div>
     <div class="stats-grid">
       <div class="stat-item reveal">
@@ -1925,7 +2076,8 @@
         <span class="stream-name">zerth79</span>
         <a class="stream-watch-btn" href="https://twitch.tv/zerth79" target="_blank">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+            <path
+              d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
           </svg>
           <span data-i18n="stream_watch">Watch on Twitch</span>
         </a>
@@ -1941,7 +2093,8 @@
         <span class="stream-name">rarely11</span>
         <a class="stream-watch-btn" href="https://twitch.tv/rarely11" target="_blank">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
+            <path
+              d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" />
           </svg>
           <span data-i18n="stream_watch">Watch on Twitch</span>
         </a>
@@ -1957,7 +2110,9 @@
     <div class="about-header">
       <span class="section-label" data-i18n="about_label">Recruiting Now</span>
       <h2 class="section-title" data-i18n="about_title">Join LEGIT Esports</h2>
-      <p class="section-sub" style="margin: 0 auto;" data-i18n="about_sub">We're building a serious long-term competitive roster — grinding ranked to high Predator, competing in scrims daily, and working toward Challenger Circuit and semi-pro level. If you're committed, this is your team.</p>
+      <p class="section-sub" style="margin: 0 auto;" data-i18n="about_sub">We're building a serious long-term
+        competitive roster — grinding ranked to high Predator, competing in scrims daily, and working toward Challenger
+        Circuit and semi-pro level. If you're committed, this is your team.</p>
     </div>
 
     <span class="about-sub-label" data-i18n="offer_label">What We Offer</span>
@@ -1965,32 +2120,38 @@
       <div class="feature-card">
         <div class="feature-icon">⚔️</div>
         <h3 data-i18n="offer1_title">Daily Scrims</h3>
-        <p data-i18n="offer1_desc">Organized daily scrim sessions against competitive teams to sharpen every aspect of your game.</p>
+        <p data-i18n="offer1_desc">Organized daily scrim sessions against competitive teams to sharpen every aspect of
+          your game.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">💎</div>
         <h3 data-i18n="offer2_title">High Predator Grind</h3>
-        <p data-i18n="offer2_desc">Not just reaching Predator — maintaining a high Predator placement every season through focused ranked grinding.</p>
+        <p data-i18n="offer2_desc">Not just reaching Predator — maintaining a high Predator placement every season
+          through focused ranked grinding.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🎬</div>
         <h3 data-i18n="offer3_title">VOD Reviews</h3>
-        <p data-i18n="offer3_desc">Regular gameplay review sessions to break down mistakes, refine macro, and accelerate individual improvement.</p>
+        <p data-i18n="offer3_desc">Regular gameplay review sessions to break down mistakes, refine macro, and accelerate
+          individual improvement.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🏆</div>
         <h3 data-i18n="offer4_title">Community Tournaments</h3>
-        <p data-i18n="offer4_desc">Active participation in community cups and tournaments building a strong competitive track record.</p>
+        <p data-i18n="offer4_desc">Active participation in community cups and tournaments building a strong competitive
+          track record.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🤝</div>
         <h3 data-i18n="offer5_title">Team Chemistry</h3>
-        <p data-i18n="offer5_desc">Positive, drama-free environment built on trust, communication, and a shared drive to improve.</p>
+        <p data-i18n="offer5_desc">Positive, drama-free environment built on trust, communication, and a shared drive to
+          improve.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🚀</div>
         <h3 data-i18n="offer6_title">Long-Term Development</h3>
-        <p data-i18n="offer6_desc">We're building something lasting. A permanent roster with ambitions beyond ranked — toward ALGS and beyond.</p>
+        <p data-i18n="offer6_desc">We're building something lasting. A permanent roster with ambitions beyond ranked —
+          toward ALGS and beyond.</p>
       </div>
     </div>
 
@@ -1998,15 +2159,18 @@
     <div class="about-roles-grid">
       <div class="about-role-card reveal">
         <div class="about-role-title">🎮 <span data-i18n="role_igl">IGL</span></div>
-        <p class="about-role-desc" data-i18n="role_igl_desc">Experienced in-game leader with strong macro understanding, confident end-game calling, and the ability to make decisive calls under pressure.</p>
+        <p class="about-role-desc" data-i18n="role_igl_desc">Experienced in-game leader with strong macro understanding,
+          confident end-game calling, and the ability to make decisive calls under pressure.</p>
       </div>
       <div class="about-role-card reveal">
         <div class="about-role-title">💀 <span data-i18n="role_fragger">Fragger</span></div>
-        <p class="about-role-desc" data-i18n="role_fragger_desc">Mechanical players who can confidently take fights, create openings for the team, and consistently perform in high-pressure ranked and scrim environments.</p>
+        <p class="about-role-desc" data-i18n="role_fragger_desc">Mechanical players who can confidently take fights,
+          create openings for the team, and consistently perform in high-pressure ranked and scrim environments.</p>
       </div>
       <div class="about-role-card reveal">
         <div class="about-role-title">🛡️ <span data-i18n="role_anchor">Anchor / Refrag</span></div>
-        <p class="about-role-desc" data-i18n="role_anchor_desc">Players with excellent positioning, teamfight awareness, and the ability to support engagements and clean up after the fragger opens fights.</p>
+        <p class="about-role-desc" data-i18n="role_anchor_desc">Players with excellent positioning, teamfight awareness,
+          and the ability to support engagements and clean up after the fragger opens fights.</p>
       </div>
     </div>
 
@@ -2086,13 +2250,18 @@
       <div class="apply-header">
         <span class="section-label" data-i18n="apply_label">Join LEGIT</span>
         <h2 class="section-title" data-i18n="apply_title">Apply Now</h2>
-        <p class="section-sub" style="margin: 0 auto;" data-i18n="apply_sub">Fill out the form and provide proof of your stats. We review every application personally.</p>
+        <p class="section-sub" style="margin: 0 auto;" data-i18n="apply_sub">Fill out the form and provide proof of your
+          stats. We review every application personally.</p>
       </div>
       <!-- Discord Login -->
       <div id="discordLoginBox" style="text-align:center; margin-bottom:32px;">
-        <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:14px;" data-i18n="apply_login_text">Login with Discord to apply or check your status:</p>
+        <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:14px;" data-i18n="apply_login_text">
+          Login with Discord to apply or check your status:</p>
         <a id="discordLoginBtn" class="btn-discord-login" href="#">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963a.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963a.074.074 0 0 0-.041-.104 13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z" />
+          </svg>
           <span data-i18n="apply_login_btn">Login with Discord</span>
         </a>
       </div>
@@ -2157,8 +2326,8 @@
         </div>
         <div class="form-group full">
           <label data-i18n="form_proof">Stats Proof — Apex Tracker URL or Description</label>
-          <textarea id="proofText"
-            placeholder="Paste your Apex Legends Tracker URL or describe your proof..." data-i18n-ph="form_proof_ph"></textarea>
+          <textarea id="proofText" placeholder="Paste your Apex Legends Tracker URL or describe your proof..."
+            data-i18n-ph="form_proof_ph"></textarea>
         </div>
         <div class="form-group full">
           <label data-i18n="form_upload">Upload Screenshots</label>
@@ -2181,11 +2350,13 @@
   <div class="modal-overlay" id="appModal">
     <div class="modal">
       <h3 data-i18n="modal_title">Application Ready</h3>
-      <p data-i18n="modal_text">Copy your application below and paste it in the <strong>#apply</strong> channel in our Discord server. Attach your screenshots there as well.</p>
+      <p data-i18n="modal_text">Copy your application below and paste it in the <strong>#apply</strong> channel in our
+        Discord server. Attach your screenshots there as well.</p>
       <div class="modal-app-text" id="appText"></div>
       <div class="modal-buttons">
         <button class="btn-copy" id="copyBtn" onclick="copyApp()" data-i18n="modal_copy">Copy Text</button>
-        <a class="btn-discord" href="https://discord.gg/YPsj22FFT" target="_blank" data-i18n="modal_discord">Open Discord</a>
+        <a class="btn-discord" href="https://discord.gg/YPsj22FFT" target="_blank" data-i18n="modal_discord">Open
+          Discord</a>
       </div>
     </div>
   </div>
@@ -2203,7 +2374,8 @@
       <a href="#apply" data-i18n="nav_apply">Apply Now</a>
       <a href="https://discord.gg/YPsj22FFT" target="_blank">Discord</a>
     </div>
-    <p class="footer-copy" data-i18n="footer_copy">&copy; 2026 LEGIT Esports &mdash; Apex Legends Competitive &nbsp;·&nbsp; Road to CC, Predator &amp; ALGS</p>
+    <p class="footer-copy" data-i18n="footer_copy">&copy; 2026 LEGIT Esports &mdash; Apex Legends Competitive
+      &nbsp;·&nbsp; Road to CC, Predator &amp; ALGS</p>
   </footer>
 
   <script>
@@ -2213,7 +2385,7 @@
       const ctx = c.getContext('2d');
       const stars = [];
       let mx = -999, my = -999;
-      const COLORS = ['255,255,255','255,60,60','80,160,255','0,220,255','255,180,0','160,80,255'];
+      const COLORS = ['255,255,255', '255,60,60', '80,160,255', '0,220,255', '255,180,0', '160,80,255'];
       const COUNT = 1200, MAX_Z = 1000, SPEED = 2.2;
       const REPEL = 120, STRENGTH = 2.5, FRICTION = 0.87;
 
@@ -2535,7 +2707,7 @@ Road to CC · Predator · ALGS 🔴`;
           const { count } = await res.json();
           document.getElementById('visitorCount').textContent = count.toLocaleString();
         }
-      } catch (_) {}
+      } catch (_) { }
     })();
 
     function copyApp() {
@@ -2596,10 +2768,10 @@ Road to CC · Predator · ALGS 🔴`;
       if (!active || !active.status || active.status === 'none') return;
 
       const panel = document.getElementById('statusPanel');
-      const icon  = document.getElementById('statusIcon');
-      const tag   = document.getElementById('statusTag');
+      const icon = document.getElementById('statusIcon');
+      const tag = document.getElementById('statusTag');
       const title = document.getElementById('statusTitle');
-      const sub   = document.getElementById('statusSub');
+      const sub = document.getElementById('statusSub');
       const action = document.getElementById('statusAction');
 
       panel.classList.add('visible');
@@ -2658,14 +2830,14 @@ Road to CC · Predator · ALGS 🔴`;
               location.reload();
             }
           })
-          .catch(() => {});
+          .catch(() => { });
       }
     }
 
     // ── VIDEO PERFORMANCE ──
     const slowConn = navigator.connection &&
       (navigator.connection.saveData ||
-       ['slow-2g', '2g'].includes(navigator.connection.effectiveType));
+        ['slow-2g', '2g'].includes(navigator.connection.effectiveType));
 
     if (slowConn) {
       const heroBg = document.querySelector('.hero-video-bg');
@@ -2714,157 +2886,157 @@ Road to CC · Predator · ALGS 🔴`;
     // ── I18N ──
     const T = {
       en: {
-        nav_about:'About',nav_streams:'Streams',nav_req:'Requirements',nav_apply:'Apply Now',visitors:'visitors',
-        hero_tag:'Apex Legends — Competitive Esports',hero_sub:'Road to CC · Predator · ALGS',
-        hero_apply:'Apply to Join',hero_discord:'Join Discord',hero_scroll:'Scroll',
-        stats_label:'The Standard',stats_title:'Minimum Requirements',
-        stats_sub:'We set a high bar. Meet these to be considered for LEGIT membership.',
-        stat1:'Minimum K/D',stat2:'Avg Damage',stat3:'Minimum Rank',stat4:'Scrim Commitment',
-        streams_label:'Member Streams',streams_title:'Watch Us Live',
-        streams_sub:'Catch LEGIT members live on Twitch',
-        stream_watch:'Watch on Twitch',stream_offline:'Offline',stream_live:'Live',
-        about_label:'Recruiting Now',about_title:'Join LEGIT Esports',
-        about_sub:"We're building a serious long-term competitive roster. If you grind ranked every day, watch your own VODs, and want to compete in ALGS-level tournaments — you belong here.",
-        offer_label:'What We Offer',
-        offer1_title:'Daily Scrims',offer1_desc:'Organized daily scrim sessions with structured rotations and in-game leadership.',
-        offer2_title:'High Predator Grind',offer2_desc:'Not just reaching Predator — pushing for top placement and Challenger Circuit qualification.',
-        offer3_title:'VOD Reviews',offer3_desc:'Regular gameplay review sessions to analyze mistakes and improve team performance.',
-        offer4_title:'Community Tournaments',offer4_desc:'Active participation in community cups and online bracket competitions.',
-        offer5_title:'Team Chemistry',offer5_desc:'Positive, drama-free environment focused on performance and mutual improvement.',
-        offer6_title:'Long-Term Development',offer6_desc:"We're building something lasting. No roster flipping, no politics.",
-        roles_label:"Who We're Looking For",
-        role_igl:'IGL',role_igl_desc:'Strong shot-caller with macro game sense and the ability to lead under pressure.',
-        role_fragger:'Fragger',role_fragger_desc:'High-damage aggressive player comfortable taking 1v1s and entry fights.',
-        role_anchor:'Anchor / Refrag',role_anchor_desc:'The backbone. Holds space, cleans up fights, and enables the team.',
-        req_pills_label:'Requirements',req_label:'Who We Want',req_title:'Membership Criteria',
-        req_required:'Required',req_preferred:'Preferred',req_rejected:'Not Accepted',
-        req_r1:'Diamond IV Minimum (Current Season)',req_r2:'1.5+ K/D Ratio',req_r3:'800+ Average Damage',
-        req_r4:'PC Platform Only',req_r5:'Daily Availability (2h+ minimum)',
-        req_r6:'Scrim Commitment (attend scheduled sessions)',req_r7:'VOD Review Participation',
-        req_p1:'Multi-Season Master',req_p2:'Former Predator',req_p3:'Scrim Experience',req_p4:'CC Experience',req_p5:'IGL / Fragger / Support Role',
-        req_j1:'Hardstuck Diamond Players',req_j2:'Inconsistent Availability',req_j3:'Players with Toxic History',req_j4:'Console Players',req_j5:'Team Hoppers',
-        apply_label:'Join LEGIT',apply_title:'Apply Now',
-        apply_sub:'Fill out the form and provide proof of your stats. We review every application personally.',
-        apply_login_text:'Login with Discord to apply or check your status:',apply_login_btn:'Login with Discord',
-        form_ea:'EA / Origin Username',form_discord:'Discord Username',form_rank:'Current Rank',
-        form_kd:'K/D Ratio',form_dmg:'Average Damage',form_legend:'Main Legend',form_role:'Role',
-        form_platform:'Platform',form_input:'Input Device',
-        form_proof:'Stats Proof — Apex Tracker URL or Description',form_upload:'Upload Screenshots',
-        form_username_ph:'YourUsername',form_discord_ph:'username',form_kd_ph:'e.g. 1.5',
-        form_dmg_ph:'e.g. 800',form_legend_ph:'e.g. Wraith, Horizon',
-        form_proof_ph:'Paste your Apex Legends Tracker URL or describe your proof...',
-        form_submit:'Submit Application',form_upload_hint:'Click to upload',
-        modal_title:'Application Ready',
-        modal_text:'Copy your application below and paste it in the #apply channel in our Discord server. Attach your screenshots there as well.',
-        modal_copy:'Copy Text',modal_discord:'Open Discord',
-        footer_copy:'© 2026 LEGIT Esports — Apex Legends Competitive · Road to CC, Predator & ALGS',
-        toast_ok:'✓ Application sent to Discord!',toast_fail:'✗ Failed to send — try again',toast_net:'✗ Network error — try again',
-        status_accepted_tag:'ACCEPTED',status_accepted_title:'Welcome to LEGIT',status_accepted_sub:'Your application has been accepted. Check your Discord DMs for next steps.',status_accepted_action:'Join Discord',
-        status_pending_tag:'UNDER REVIEW',status_pending_title:'Application Received',status_pending_sub:"Your application is being reviewed. We'll reach out via Discord once a decision has been made.",
-        status_rejected_tag:'NOT ACCEPTED',status_rejected_title:'Application Not Accepted',status_rejected_sub:'Unfortunately your application was not accepted at this time. You are welcome to apply again below.',
-        status_error_tag:'ERROR',status_error_title:'Something went wrong',status_error_sub:'Please try logging in again.',
+        nav_about: 'About', nav_streams: 'Streams', nav_req: 'Requirements', nav_apply: 'Apply Now', visitors: 'visitors',
+        hero_tag: 'Apex Legends — Competitive Esports', hero_sub: 'Road to ESPORTS',
+        hero_apply: 'Apply to Join', hero_discord: 'Join Discord', hero_scroll: 'Scroll',
+        stats_label: 'The Standard', stats_title: 'Minimum Requirements',
+        stats_sub: 'We set a high bar. Meet these to be considered for LEGIT membership.',
+        stat1: 'Minimum K/D', stat2: 'Avg Damage', stat3: 'Minimum Rank', stat4: 'Scrim Commitment',
+        streams_label: 'Member Streams', streams_title: 'Watch Us Live',
+        streams_sub: 'Catch LEGIT members live on Twitch',
+        stream_watch: 'Watch on Twitch', stream_offline: 'Offline', stream_live: 'Live',
+        about_label: 'Recruiting Now', about_title: 'Join LEGIT Esports',
+        about_sub: "We're building a serious long-term competitive roster. If you grind ranked every day, watch your own VODs, and want to compete in ALGS-level tournaments — you belong here.",
+        offer_label: 'What We Offer',
+        offer1_title: 'Daily Scrims', offer1_desc: 'Organized daily scrim sessions with structured rotations and in-game leadership.',
+        offer2_title: 'High Predator Grind', offer2_desc: 'Not just reaching Predator — pushing for top placement and Challenger Circuit qualification.',
+        offer3_title: 'VOD Reviews', offer3_desc: 'Regular gameplay review sessions to analyze mistakes and improve team performance.',
+        offer4_title: 'Community Tournaments', offer4_desc: 'Active participation in community cups and online bracket competitions.',
+        offer5_title: 'Team Chemistry', offer5_desc: 'Positive, drama-free environment focused on performance and mutual improvement.',
+        offer6_title: 'Long-Term Development', offer6_desc: "We're building something lasting. No roster flipping, no politics.",
+        roles_label: "Who We're Looking For",
+        role_igl: 'IGL', role_igl_desc: 'Strong shot-caller with macro game sense and the ability to lead under pressure.',
+        role_fragger: 'Fragger', role_fragger_desc: 'High-damage aggressive player comfortable taking 1v1s and entry fights.',
+        role_anchor: 'Anchor / Refrag', role_anchor_desc: 'The backbone. Holds space, cleans up fights, and enables the team.',
+        req_pills_label: 'Requirements', req_label: 'Who We Want', req_title: 'Membership Criteria',
+        req_required: 'Required', req_preferred: 'Preferred', req_rejected: 'Not Accepted',
+        req_r1: 'Diamond IV Minimum (Current Season)', req_r2: '1.5+ K/D Ratio', req_r3: '800+ Average Damage',
+        req_r4: 'PC Platform Only', req_r5: 'Daily Availability (2h+ minimum)',
+        req_r6: 'Scrim Commitment (attend scheduled sessions)', req_r7: 'VOD Review Participation',
+        req_p1: 'Multi-Season Master', req_p2: 'Former Predator', req_p3: 'Scrim Experience', req_p4: 'CC Experience', req_p5: 'IGL / Fragger / Support Role',
+        req_j1: 'Hardstuck Diamond Players', req_j2: 'Inconsistent Availability', req_j3: 'Players with Toxic History', req_j4: 'Console Players', req_j5: 'Team Hoppers',
+        apply_label: 'Join LEGIT', apply_title: 'Apply Now',
+        apply_sub: 'Fill out the form and provide proof of your stats. We review every application personally.',
+        apply_login_text: 'Login with Discord to apply or check your status:', apply_login_btn: 'Login with Discord',
+        form_ea: 'EA / Origin Username', form_discord: 'Discord Username', form_rank: 'Current Rank',
+        form_kd: 'K/D Ratio', form_dmg: 'Average Damage', form_legend: 'Main Legend', form_role: 'Role',
+        form_platform: 'Platform', form_input: 'Input Device',
+        form_proof: 'Stats Proof — Apex Tracker URL or Description', form_upload: 'Upload Screenshots',
+        form_username_ph: 'YourUsername', form_discord_ph: 'username', form_kd_ph: 'e.g. 1.5',
+        form_dmg_ph: 'e.g. 800', form_legend_ph: 'e.g. Wraith, Horizon',
+        form_proof_ph: 'Paste your Apex Legends Tracker URL or describe your proof...',
+        form_submit: 'Submit Application', form_upload_hint: 'Click to upload',
+        modal_title: 'Application Ready',
+        modal_text: 'Copy your application below and paste it in the #apply channel in our Discord server. Attach your screenshots there as well.',
+        modal_copy: 'Copy Text', modal_discord: 'Open Discord',
+        footer_copy: '© 2026 LEGIT Esports — Apex Legends Competitive · Road to CC, Predator & ALGS',
+        toast_ok: '✓ Application sent to Discord!', toast_fail: '✗ Failed to send — try again', toast_net: '✗ Network error — try again',
+        status_accepted_tag: 'ACCEPTED', status_accepted_title: 'Welcome to LEGIT', status_accepted_sub: 'Your application has been accepted. Check your Discord DMs for next steps.', status_accepted_action: 'Join Discord',
+        status_pending_tag: 'UNDER REVIEW', status_pending_title: 'Application Received', status_pending_sub: "Your application is being reviewed. We'll reach out via Discord once a decision has been made.",
+        status_rejected_tag: 'NOT ACCEPTED', status_rejected_title: 'Application Not Accepted', status_rejected_sub: 'Unfortunately your application was not accepted at this time. You are welcome to apply again below.',
+        status_error_tag: 'ERROR', status_error_title: 'Something went wrong', status_error_sub: 'Please try logging in again.',
       },
       ar: {
-        nav_about:'حول',nav_streams:'البث',nav_req:'المتطلبات',nav_apply:'سجّل الآن',visitors:'زائر',
-        hero_tag:'Apex Legends — كلان تنافسي',hero_sub:'طريق CC · Predator · ALGS',
-        hero_apply:'انضم إلينا',hero_discord:'انضم للديسكورد',hero_scroll:'اسكرول',
-        stats_label:'المعيار',stats_title:'الحد الأدنى من المتطلبات',
-        stats_sub:'نضع معياراً عالياً. حقق هذه الأرقام لتكون مرشحاً للانضمام.',
-        stat1:'الحد الأدنى K/D',stat2:'متوسط الضرر',stat3:'الحد الأدنى للرتبة',stat4:'الالتزام بالسكريم',
-        streams_label:'بث الأعضاء',streams_title:'شاهدنا مباشرة',
-        streams_sub:'تابع أعضاء LEGIT مباشرة على تويتش',
-        stream_watch:'شاهد على تويتش',stream_offline:'غير متصل',stream_live:'مباشر',
-        about_label:'التجنيد مفتوح',about_title:'انضم لـ LEGIT Esports',
-        about_sub:'نبني روستر تنافسي جاد على المدى البعيد. إذا كنت تطحن الرانكد يومياً، تراجع فيديوهاتك، وتريد المنافسة في بطولات مستوى ALGS — مكانك هنا.',
-        offer_label:'ما نقدمه',
-        offer1_title:'سكريم يومي',offer1_desc:'جلسات سكريم يومية منظمة مع روتيشن وقيادة داخل اللعبة.',
-        offer2_title:'طحن Predator بجدية',offer2_desc:'ليس فقط الوصول لـ Predator — بل الدفع نحو أعلى المراتب والتأهل لـ Challenger Circuit.',
-        offer3_title:'مراجعة الفيديوهات',offer3_desc:'جلسات منتظمة لمراجعة اللعب وتحليل الأخطاء وتحسين أداء الفريق.',
-        offer4_title:'بطولات المجتمع',offer4_desc:'مشاركة فعلية في كبّات المجتمع ومنافسات البراكيت أونلاين.',
-        offer5_title:'كيمياء الفريق',offer5_desc:'بيئة إيجابية وخالية من الدراما، تركيزها على الأداء والتطور المشترك.',
-        offer6_title:'تطوير على المدى البعيد',offer6_desc:'نبني شيئاً يدوم. لا تبديل في الروستر، لا سياسات.',
-        roles_label:'من نبحث عنه',
-        role_igl:'قائد اللعبة',role_igl_desc:'شات-كولر قوي لديه فهم ماكرو ويقدر يقود الفريق تحت الضغط.',
-        role_fragger:'المهاجم',role_fragger_desc:'لاعب هجومي بضرر عالٍ ومرتاح في الـ 1v1 وافتتاح المعارك.',
-        role_anchor:'الأنكر / ريفراق',role_anchor_desc:'العمود الفقري. يثبّت المواقع، يكمل المعارك، ويدعم الفريق.',
-        req_pills_label:'المتطلبات',req_label:'من نريده',req_title:'معايير العضوية',
-        req_required:'مطلوب',req_preferred:'مفضّل',req_rejected:'غير مقبول',
-        req_r1:'Diamond IV كحد أدنى (الموسم الحالي)',req_r2:'نسبة K/D لا تقل عن 1.5',req_r3:'متوسط ضرر 800+ للجولة',
-        req_r4:'PC فقط',req_r5:'توفر يومي (ساعتان على الأقل)',
-        req_r6:'الالتزام بجلسات السكريم المجدولة',req_r7:'المشاركة في مراجعة الفيديوهات',
-        req_p1:'Master لعدة مواسم',req_p2:'Predator سابق',req_p3:'خبرة في السكريم',req_p4:'خبرة في CC',req_p5:'دور IGL أو Fragger أو Support',
-        req_j1:'لاعبون عالقون في Diamond',req_j2:'توفر غير منتظم',req_j3:'لاعبون بتاريخ سلوكي سيء',req_j4:'لاعبو كونسول',req_j5:'كثيرو التنقل بين الكلانات',
-        apply_label:'انضم لـ LEGIT',apply_title:'سجّل الآن',
-        apply_sub:'املأ النموذج وأثبت إحصائياتك. نراجع كل طلب بشكل شخصي.',
-        apply_login_text:'سجّل دخول بالديسكورد للتقديم أو متابعة حالة طلبك:',apply_login_btn:'تسجيل بالديسكورد',
-        form_ea:'اسم EA / Origin',form_discord:'اسم الديسكورد',form_rank:'رتبتك الحالية',
-        form_kd:'نسبة K/D',form_dmg:'متوسط الضرر',form_legend:'الليجيند الرئيسي',form_role:'دورك',
-        form_platform:'المنصة',form_input:'طريقة التحكم',
-        form_proof:'إثبات الإحصائيات — رابط Apex Tracker أو وصف',form_upload:'رفع لقطات الشاشة',
-        form_username_ph:'اسمك في اللعبة',form_discord_ph:'username',form_kd_ph:'مثال: 1.5',
-        form_dmg_ph:'مثال: 800',form_legend_ph:'مثال: Wraith، Horizon',
-        form_proof_ph:'الصق رابط Apex Tracker أو اشرح إحصائياتك...',
-        form_submit:'إرسال الطلب',form_upload_hint:'اضغط للرفع',
-        modal_title:'الطلب جاهز',
-        modal_text:'انسخ طلبك أدناه والصقه في قناة #apply في ديسكورد الكلان. أرفق لقطات الشاشة هناك أيضاً.',
-        modal_copy:'نسخ النص',modal_discord:'فتح الديسكورد',
-        footer_copy:'© 2026 LEGIT Esports — Apex Legends التنافسي · طريق CC و Predator و ALGS',
-        toast_ok:'✓ تم إرسال الطلب للديسكورد!',toast_fail:'✗ فشل الإرسال — حاول مرة أخرى',toast_net:'✗ خطأ في الشبكة — حاول مرة أخرى',
-        status_accepted_tag:'مقبول',status_accepted_title:'مرحباً بك في LEGIT',status_accepted_sub:'تم قبول طلبك. تحقق من رسائل الديسكورد للخطوات التالية.',status_accepted_action:'انضم للديسكورد',
-        status_pending_tag:'قيد المراجعة',status_pending_title:'تم استلام الطلب',status_pending_sub:'طلبك قيد المراجعة. سنتواصل معك عبر الديسكورد بعد اتخاذ القرار.',
-        status_rejected_tag:'غير مقبول',status_rejected_title:'لم يتم قبول الطلب',status_rejected_sub:'للأسف لم يتم قبول طلبك في الوقت الحالي. يمكنك التقديم مجدداً أدناه.',
-        status_error_tag:'خطأ',status_error_title:'حدث خطأ ما',status_error_sub:'يرجى تسجيل الدخول مرة أخرى.',
+        nav_about: 'حول', nav_streams: 'البث', nav_req: 'المتطلبات', nav_apply: 'سجّل الآن', visitors: 'زائر',
+        hero_tag: 'Apex Legends — كلان تنافسي', hero_sub: 'طريق CC · Predator · ALGS',
+        hero_apply: 'انضم إلينا', hero_discord: 'انضم للديسكورد', hero_scroll: 'اسكرول',
+        stats_label: 'المعيار', stats_title: 'الحد الأدنى من المتطلبات',
+        stats_sub: 'نضع معياراً عالياً. حقق هذه الأرقام لتكون مرشحاً للانضمام.',
+        stat1: 'الحد الأدنى K/D', stat2: 'متوسط الضرر', stat3: 'الحد الأدنى للرتبة', stat4: 'الالتزام بالسكريم',
+        streams_label: 'بث الأعضاء', streams_title: 'شاهدنا مباشرة',
+        streams_sub: 'تابع أعضاء LEGIT مباشرة على تويتش',
+        stream_watch: 'شاهد على تويتش', stream_offline: 'غير متصل', stream_live: 'مباشر',
+        about_label: 'التجنيد مفتوح', about_title: 'انضم لـ LEGIT Esports',
+        about_sub: 'نبني روستر تنافسي جاد على المدى البعيد. إذا كنت تطحن الرانكد يومياً، تراجع فيديوهاتك، وتريد المنافسة في بطولات مستوى ALGS — مكانك هنا.',
+        offer_label: 'ما نقدمه',
+        offer1_title: 'سكريم يومي', offer1_desc: 'جلسات سكريم يومية منظمة مع روتيشن وقيادة داخل اللعبة.',
+        offer2_title: 'طحن Predator بجدية', offer2_desc: 'ليس فقط الوصول لـ Predator — بل الدفع نحو أعلى المراتب والتأهل لـ Challenger Circuit.',
+        offer3_title: 'مراجعة الفيديوهات', offer3_desc: 'جلسات منتظمة لمراجعة اللعب وتحليل الأخطاء وتحسين أداء الفريق.',
+        offer4_title: 'بطولات المجتمع', offer4_desc: 'مشاركة فعلية في كبّات المجتمع ومنافسات البراكيت أونلاين.',
+        offer5_title: 'كيمياء الفريق', offer5_desc: 'بيئة إيجابية وخالية من الدراما، تركيزها على الأداء والتطور المشترك.',
+        offer6_title: 'تطوير على المدى البعيد', offer6_desc: 'نبني شيئاً يدوم. لا تبديل في الروستر، لا سياسات.',
+        roles_label: 'من نبحث عنه',
+        role_igl: 'قائد اللعبة', role_igl_desc: 'شات-كولر قوي لديه فهم ماكرو ويقدر يقود الفريق تحت الضغط.',
+        role_fragger: 'المهاجم', role_fragger_desc: 'لاعب هجومي بضرر عالٍ ومرتاح في الـ 1v1 وافتتاح المعارك.',
+        role_anchor: 'الأنكر / ريفراق', role_anchor_desc: 'العمود الفقري. يثبّت المواقع، يكمل المعارك، ويدعم الفريق.',
+        req_pills_label: 'المتطلبات', req_label: 'من نريده', req_title: 'معايير العضوية',
+        req_required: 'مطلوب', req_preferred: 'مفضّل', req_rejected: 'غير مقبول',
+        req_r1: 'Diamond IV كحد أدنى (الموسم الحالي)', req_r2: 'نسبة K/D لا تقل عن 1.5', req_r3: 'متوسط ضرر 800+ للجولة',
+        req_r4: 'PC فقط', req_r5: 'توفر يومي (ساعتان على الأقل)',
+        req_r6: 'الالتزام بجلسات السكريم المجدولة', req_r7: 'المشاركة في مراجعة الفيديوهات',
+        req_p1: 'Master لعدة مواسم', req_p2: 'Predator سابق', req_p3: 'خبرة في السكريم', req_p4: 'خبرة في CC', req_p5: 'دور IGL أو Fragger أو Support',
+        req_j1: 'لاعبون عالقون في Diamond', req_j2: 'توفر غير منتظم', req_j3: 'لاعبون بتاريخ سلوكي سيء', req_j4: 'لاعبو كونسول', req_j5: 'كثيرو التنقل بين الكلانات',
+        apply_label: 'انضم لـ LEGIT', apply_title: 'سجّل الآن',
+        apply_sub: 'املأ النموذج وأثبت إحصائياتك. نراجع كل طلب بشكل شخصي.',
+        apply_login_text: 'سجّل دخول بالديسكورد للتقديم أو متابعة حالة طلبك:', apply_login_btn: 'تسجيل بالديسكورد',
+        form_ea: 'اسم EA / Origin', form_discord: 'اسم الديسكورد', form_rank: 'رتبتك الحالية',
+        form_kd: 'نسبة K/D', form_dmg: 'متوسط الضرر', form_legend: 'الليجيند الرئيسي', form_role: 'دورك',
+        form_platform: 'المنصة', form_input: 'طريقة التحكم',
+        form_proof: 'إثبات الإحصائيات — رابط Apex Tracker أو وصف', form_upload: 'رفع لقطات الشاشة',
+        form_username_ph: 'اسمك في اللعبة', form_discord_ph: 'username', form_kd_ph: 'مثال: 1.5',
+        form_dmg_ph: 'مثال: 800', form_legend_ph: 'مثال: Wraith، Horizon',
+        form_proof_ph: 'الصق رابط Apex Tracker أو اشرح إحصائياتك...',
+        form_submit: 'إرسال الطلب', form_upload_hint: 'اضغط للرفع',
+        modal_title: 'الطلب جاهز',
+        modal_text: 'انسخ طلبك أدناه والصقه في قناة #apply في ديسكورد الكلان. أرفق لقطات الشاشة هناك أيضاً.',
+        modal_copy: 'نسخ النص', modal_discord: 'فتح الديسكورد',
+        footer_copy: '© 2026 LEGIT Esports — Apex Legends التنافسي · طريق CC و Predator و ALGS',
+        toast_ok: '✓ تم إرسال الطلب للديسكورد!', toast_fail: '✗ فشل الإرسال — حاول مرة أخرى', toast_net: '✗ خطأ في الشبكة — حاول مرة أخرى',
+        status_accepted_tag: 'مقبول', status_accepted_title: 'مرحباً بك في LEGIT', status_accepted_sub: 'تم قبول طلبك. تحقق من رسائل الديسكورد للخطوات التالية.', status_accepted_action: 'انضم للديسكورد',
+        status_pending_tag: 'قيد المراجعة', status_pending_title: 'تم استلام الطلب', status_pending_sub: 'طلبك قيد المراجعة. سنتواصل معك عبر الديسكورد بعد اتخاذ القرار.',
+        status_rejected_tag: 'غير مقبول', status_rejected_title: 'لم يتم قبول الطلب', status_rejected_sub: 'للأسف لم يتم قبول طلبك في الوقت الحالي. يمكنك التقديم مجدداً أدناه.',
+        status_error_tag: 'خطأ', status_error_title: 'حدث خطأ ما', status_error_sub: 'يرجى تسجيل الدخول مرة أخرى.',
       },
       ru: {
-        nav_about:'О нас',nav_streams:'Стримы',nav_req:'Требования',nav_apply:'Подать заявку',visitors:'посетителей',
-        hero_tag:'Apex Legends — Соревновательный клан',hero_sub:'Путь к CC · Predator · ALGS',
-        hero_apply:'Вступить',hero_discord:'Войти в Discord',hero_scroll:'Листать',
-        stats_label:'Стандарт',stats_title:'Минимальные требования',
-        stats_sub:'Мы держим высокую планку. Выполни эти условия, чтобы попасть в LEGIT.',
-        stat1:'Мин. K/D',stat2:'Сред. урон',stat3:'Мин. ранг',stat4:'Скримы',
-        streams_label:'Стримы участников',streams_title:'Смотри нас вживую',
-        streams_sub:'Смотри участников LEGIT вживую на Twitch',
-        stream_watch:'Смотреть на Twitch',stream_offline:'Оффлайн',stream_live:'В эфире',
-        about_label:'Идёт набор',about_title:'Вступи в LEGIT Esports',
-        about_sub:'Мы строим серьёзный долгосрочный состав. Если ты каждый день гриндишь ранк, смотришь свои VOD и хочешь участвовать в турнирах уровня ALGS — ты на своём месте.',
-        offer_label:'Что мы предлагаем',
-        offer1_title:'Ежедневные скримы',offer1_desc:'Организованные ежедневные скрим-сессии с чёткими ротациями и внутриигровым лидерством.',
-        offer2_title:'Гринд Predator',offer2_desc:'Не просто достичь Predator — мы метим в топ и квалификацию на Challenger Circuit.',
-        offer3_title:'VOD-разборы',offer3_desc:'Регулярные сессии разбора геймплея для анализа ошибок и улучшения командной игры.',
-        offer4_title:'Командные турниры',offer4_desc:'Активное участие в комьюнити-кубках и онлайн-турнирах.',
-        offer5_title:'Командная химия',offer5_desc:'Позитивная атмосфера без токсичности, сфокусированная на результате и взаимном росте.',
-        offer6_title:'Долгосрочное развитие',offer6_desc:'Мы строим что-то стабильное. Никакой ротации состава, никакой политики.',
-        roles_label:'Кого мы ищем',
-        role_igl:'IGL',role_igl_desc:'Сильный шот-коллер с макро-пониманием игры и способностью вести команду под давлением.',
-        role_fragger:'Фраггер',role_fragger_desc:'Агрессивный игрок с высоким уроном, готовый к 1v1 и вскрытию позиций.',
-        role_anchor:'Анкор / Рефраг',role_anchor_desc:'Опора команды. Удерживает позиции, добивает врагов и поддерживает команду.',
-        req_pills_label:'Требования',req_label:'Кого мы хотим',req_title:'Критерии членства',
-        req_required:'Обязательно',req_preferred:'Желательно',req_rejected:'Не принимаем',
-        req_r1:'Diamond IV минимум (текущий сезон)',req_r2:'K/D от 1.5 и выше',req_r3:'Средний урон 800+ за раунд',
-        req_r4:'Только PC',req_r5:'Ежедневная доступность (минимум 2 часа)',
-        req_r6:'Обязательное посещение скримов',req_r7:'Участие в VOD-разборах',
-        req_p1:'Master несколько сезонов подряд',req_p2:'Бывший Predator',req_p3:'Опыт в скримах',req_p4:'Опыт в CC',req_p5:'Роль IGL, Фраггера или Саппорта',
-        req_j1:'Застрявшие в Diamond игроки',req_j2:'Непостоянная доступность',req_j3:'Игроки с токсичной историей',req_j4:'Консольные игроки',req_j5:'Перебежчики из клана в клан',
-        apply_label:'Вступи в LEGIT',apply_title:'Подать заявку',
-        apply_sub:'Заполни анкету и прикрепи доказательства статистики. Мы рассматриваем каждую заявку лично.',
-        apply_login_text:'Войди через Discord, чтобы подать заявку или проверить её статус:',apply_login_btn:'Войти через Discord',
-        form_ea:'EA / Origin никнейм',form_discord:'Discord никнейм',form_rank:'Текущий ранг',
-        form_kd:'K/D',form_dmg:'Средний урон',form_legend:'Основной легенд',form_role:'Роль',
-        form_platform:'Платформа',form_input:'Устройство управления',
-        form_proof:'Подтверждение статистики — ссылка Apex Tracker или описание',form_upload:'Загрузить скриншоты',
-        form_username_ph:'ТвойНикнейм',form_discord_ph:'username',form_kd_ph:'напр. 1.5',
-        form_dmg_ph:'напр. 800',form_legend_ph:'напр. Wraith, Horizon',
-        form_proof_ph:'Вставь ссылку на Apex Tracker или опиши свою статистику...',
-        form_submit:'Отправить заявку',form_upload_hint:'Нажмите для загрузки',
-        modal_title:'Заявка готова',
-        modal_text:'Скопируй заявку ниже и вставь её в канал #apply на нашем Discord сервере. Прикрепи скриншоты там же.',
-        modal_copy:'Копировать текст',modal_discord:'Открыть Discord',
-        footer_copy:'© 2026 LEGIT Esports — Apex Legends Соревновательный · Путь к CC, Predator и ALGS',
-        toast_ok:'✓ Заявка отправлена в Discord!',toast_fail:'✗ Ошибка отправки — попробуй снова',toast_net:'✗ Ошибка сети — попробуй снова',
-        status_accepted_tag:'ПРИНЯТ',status_accepted_title:'Добро пожаловать в LEGIT',status_accepted_sub:'Твоя заявка принята. Проверь личные сообщения в Discord.',status_accepted_action:'Войти в Discord',
-        status_pending_tag:'НА РАССМОТРЕНИИ',status_pending_title:'Заявка получена',status_pending_sub:'Твоя заявка рассматривается. Мы свяжемся с тобой в Discord после принятия решения.',
-        status_rejected_tag:'НЕ ПРИНЯТ',status_rejected_title:'Заявка не принята',status_rejected_sub:'К сожалению, твоя заявка не была принята. Ты можешь подать заявку снова ниже.',
-        status_error_tag:'ОШИБКА',status_error_title:'Что-то пошло не так',status_error_sub:'Попробуй войти снова.',
+        nav_about: 'О нас', nav_streams: 'Стримы', nav_req: 'Требования', nav_apply: 'Подать заявку', visitors: 'посетителей',
+        hero_tag: 'Apex Legends — Соревновательный клан', hero_sub: 'Путь к CC · Predator · ALGS',
+        hero_apply: 'Вступить', hero_discord: 'Войти в Discord', hero_scroll: 'Листать',
+        stats_label: 'Стандарт', stats_title: 'Минимальные требования',
+        stats_sub: 'Мы держим высокую планку. Выполни эти условия, чтобы попасть в LEGIT.',
+        stat1: 'Мин. K/D', stat2: 'Сред. урон', stat3: 'Мин. ранг', stat4: 'Скримы',
+        streams_label: 'Стримы участников', streams_title: 'Смотри нас вживую',
+        streams_sub: 'Смотри участников LEGIT вживую на Twitch',
+        stream_watch: 'Смотреть на Twitch', stream_offline: 'Оффлайн', stream_live: 'В эфире',
+        about_label: 'Идёт набор', about_title: 'Вступи в LEGIT Esports',
+        about_sub: 'Мы строим серьёзный долгосрочный состав. Если ты каждый день гриндишь ранк, смотришь свои VOD и хочешь участвовать в турнирах уровня ALGS — ты на своём месте.',
+        offer_label: 'Что мы предлагаем',
+        offer1_title: 'Ежедневные скримы', offer1_desc: 'Организованные ежедневные скрим-сессии с чёткими ротациями и внутриигровым лидерством.',
+        offer2_title: 'Гринд Predator', offer2_desc: 'Не просто достичь Predator — мы метим в топ и квалификацию на Challenger Circuit.',
+        offer3_title: 'VOD-разборы', offer3_desc: 'Регулярные сессии разбора геймплея для анализа ошибок и улучшения командной игры.',
+        offer4_title: 'Командные турниры', offer4_desc: 'Активное участие в комьюнити-кубках и онлайн-турнирах.',
+        offer5_title: 'Командная химия', offer5_desc: 'Позитивная атмосфера без токсичности, сфокусированная на результате и взаимном росте.',
+        offer6_title: 'Долгосрочное развитие', offer6_desc: 'Мы строим что-то стабильное. Никакой ротации состава, никакой политики.',
+        roles_label: 'Кого мы ищем',
+        role_igl: 'IGL', role_igl_desc: 'Сильный шот-коллер с макро-пониманием игры и способностью вести команду под давлением.',
+        role_fragger: 'Фраггер', role_fragger_desc: 'Агрессивный игрок с высоким уроном, готовый к 1v1 и вскрытию позиций.',
+        role_anchor: 'Анкор / Рефраг', role_anchor_desc: 'Опора команды. Удерживает позиции, добивает врагов и поддерживает команду.',
+        req_pills_label: 'Требования', req_label: 'Кого мы хотим', req_title: 'Критерии членства',
+        req_required: 'Обязательно', req_preferred: 'Желательно', req_rejected: 'Не принимаем',
+        req_r1: 'Diamond IV минимум (текущий сезон)', req_r2: 'K/D от 1.5 и выше', req_r3: 'Средний урон 800+ за раунд',
+        req_r4: 'Только PC', req_r5: 'Ежедневная доступность (минимум 2 часа)',
+        req_r6: 'Обязательное посещение скримов', req_r7: 'Участие в VOD-разборах',
+        req_p1: 'Master несколько сезонов подряд', req_p2: 'Бывший Predator', req_p3: 'Опыт в скримах', req_p4: 'Опыт в CC', req_p5: 'Роль IGL, Фраггера или Саппорта',
+        req_j1: 'Застрявшие в Diamond игроки', req_j2: 'Непостоянная доступность', req_j3: 'Игроки с токсичной историей', req_j4: 'Консольные игроки', req_j5: 'Перебежчики из клана в клан',
+        apply_label: 'Вступи в LEGIT', apply_title: 'Подать заявку',
+        apply_sub: 'Заполни анкету и прикрепи доказательства статистики. Мы рассматриваем каждую заявку лично.',
+        apply_login_text: 'Войди через Discord, чтобы подать заявку или проверить её статус:', apply_login_btn: 'Войти через Discord',
+        form_ea: 'EA / Origin никнейм', form_discord: 'Discord никнейм', form_rank: 'Текущий ранг',
+        form_kd: 'K/D', form_dmg: 'Средний урон', form_legend: 'Основной легенд', form_role: 'Роль',
+        form_platform: 'Платформа', form_input: 'Устройство управления',
+        form_proof: 'Подтверждение статистики — ссылка Apex Tracker или описание', form_upload: 'Загрузить скриншоты',
+        form_username_ph: 'ТвойНикнейм', form_discord_ph: 'username', form_kd_ph: 'напр. 1.5',
+        form_dmg_ph: 'напр. 800', form_legend_ph: 'напр. Wraith, Horizon',
+        form_proof_ph: 'Вставь ссылку на Apex Tracker или опиши свою статистику...',
+        form_submit: 'Отправить заявку', form_upload_hint: 'Нажмите для загрузки',
+        modal_title: 'Заявка готова',
+        modal_text: 'Скопируй заявку ниже и вставь её в канал #apply на нашем Discord сервере. Прикрепи скриншоты там же.',
+        modal_copy: 'Копировать текст', modal_discord: 'Открыть Discord',
+        footer_copy: '© 2026 LEGIT Esports — Apex Legends Соревновательный · Путь к CC, Predator и ALGS',
+        toast_ok: '✓ Заявка отправлена в Discord!', toast_fail: '✗ Ошибка отправки — попробуй снова', toast_net: '✗ Ошибка сети — попробуй снова',
+        status_accepted_tag: 'ПРИНЯТ', status_accepted_title: 'Добро пожаловать в LEGIT', status_accepted_sub: 'Твоя заявка принята. Проверь личные сообщения в Discord.', status_accepted_action: 'Войти в Discord',
+        status_pending_tag: 'НА РАССМОТРЕНИИ', status_pending_title: 'Заявка получена', status_pending_sub: 'Твоя заявка рассматривается. Мы свяжемся с тобой в Discord после принятия решения.',
+        status_rejected_tag: 'НЕ ПРИНЯТ', status_rejected_title: 'Заявка не принята', status_rejected_sub: 'К сожалению, твоя заявка не была принята. Ты можешь подать заявку снова ниже.',
+        status_error_tag: 'ОШИБКА', status_error_title: 'Что-то пошло не так', status_error_sub: 'Попробуй войти снова.',
       }
     };
 
@@ -2892,8 +3064,8 @@ Road to CC · Predator · ALGS 🔴`;
       btn.addEventListener('click', () => setLang(btn.dataset.lang))
     );
 
-    try { setLang(currentLang); } catch(e) {}
-    try { checkStatus(); } catch(e) {}
+    try { setLang(currentLang); } catch (e) { }
+    try { checkStatus(); } catch (e) { }
   </script>
 </body>
 
