@@ -2566,7 +2566,7 @@ Road to CC · Predator · ALGS 🔴`;
       location.reload();
     }
 
-    (function checkStatus() {
+    function checkStatus() {
       const params = new URLSearchParams(location.search);
       const status = params.get('status');
       const user = params.get('user');
@@ -2660,7 +2660,7 @@ Road to CC · Predator · ALGS 🔴`;
           })
           .catch(() => {});
       }
-    })();
+    }
 
     // ── VIDEO PERFORMANCE ──
     const slowConn = navigator.connection &&
@@ -2893,6 +2893,7 @@ Road to CC · Predator · ALGS 🔴`;
     );
 
     try { setLang(currentLang); } catch(e) {}
+    try { checkStatus(); } catch(e) {}
   </script>
 </body>
 
