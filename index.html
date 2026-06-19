@@ -2841,10 +2841,7 @@ Road to CC · Predator · ALGS 🔴`;
     // Paste the values below:
     const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1514762045382201469/Gff3OD9bHCKaFuY9cDzQGAEOC8MrZvi0pf7Mr4ud3io9sYbNWqjW4MhVuYpCWO-ZhHdk';
 
-    const TWITCH_CLIENT_ID = '';   // ← paste your Client ID here
-    const TWITCH_TOKEN = '';       // ← paste your app access token here
-
-    function twitchTimeAgo(isoStr) {
+function twitchTimeAgo(isoStr) {
       const diff = (Date.now() - new Date(isoStr)) / 1000;
       if (diff < 3600)  return `${Math.floor(diff / 60)} min ago`;
       if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
@@ -2853,61 +2850,29 @@ Road to CC · Predator · ALGS 🔴`;
     }
 
     async function checkTwitchLive() {
-      if (!TWITCH_CLIENT_ID || !TWITCH_TOKEN) return;
       const cards = document.querySelectorAll('.stream-card[data-channel]');
       const channels = Array.from(cards).map(c => c.dataset.channel);
-      const hdrs = { 'Client-ID': TWITCH_CLIENT_ID, 'Authorization': `Bearer ${TWITCH_TOKEN}` };
       try {
-        const query = channels.map(c => `user_login=${c}`).join('&');
-        // Fetch live streams + user IDs in parallel
-        const [streamsRes, usersRes] = await Promise.all([
-          fetch(`https://api.twitch.tv/helix/streams?${query}`, { headers: hdrs }),
-          fetch(`https://api.twitch.tv/helix/users?${query}`, { headers: hdrs })
-        ]);
-        if (!streamsRes.ok || !usersRes.ok) return;
-        const { data: streams } = await streamsRes.json();
-        const { data: users }   = await usersRes.json();
-
-        const liveMap = {};
-        streams.forEach(s => { liveMap[s.user_login.toLowerCase()] = s; });
-        const userIdMap = {};
-        users.forEach(u => { userIdMap[u.login.toLowerCase()] = u.id; });
-
-        // Fetch last video for each offline channel
-        const offlineChannels = channels.filter(ch => !liveMap[ch.toLowerCase()]);
-        const videoFetches = offlineChannels.map(ch => {
-          const uid = userIdMap[ch.toLowerCase()];
-          if (!uid) return Promise.resolve({ ch, date: null });
-          return fetch(`https://api.twitch.tv/helix/videos?user_id=${uid}&type=archive&first=1`, { headers: hdrs })
-            .then(r => r.json())
-            .then(j => ({ ch, date: j.data?.[0]?.created_at || null }))
-            .catch(() => ({ ch, date: null }));
-        });
-        const videoResults = await Promise.all(videoFetches);
-        const lastLiveMap = {};
-        videoResults.forEach(({ ch, date }) => { lastLiveMap[ch.toLowerCase()] = date; });
-
+        const res = await fetch(
+          `https://discord-bot-production-fcdc.up.railway.app/twitch-status?channels=${channels.join(',')}`
+        );
+        if (!res.ok) return;
+        const data = await res.json();
         channels.forEach(ch => {
-          const badge = document.getElementById(`badge-${ch}`);
+          const info = data[ch.toLowerCase()];
+          if (!info) return;
+          const badge    = document.getElementById(`badge-${ch}`);
+          const lastLiveEl = document.getElementById(`lastlive-${ch}`);
           if (!badge) return;
           const label = badge.querySelector('.badge-label');
-          const lastLiveEl = document.getElementById(`lastlive-${ch}`);
-          const streamData = liveMap[ch.toLowerCase()];
-          if (streamData) {
+          if (info.live) {
             badge.className = 'stream-badge live';
             label.textContent = 'Live Now';
-            if (lastLiveEl) {
-              lastLiveEl.textContent = streamData.viewer_count
-                ? `${streamData.viewer_count.toLocaleString()} viewers`
-                : '';
-            }
+            if (lastLiveEl) lastLiveEl.textContent = info.viewers ? `${info.viewers.toLocaleString()} viewers` : '';
           } else {
             badge.className = 'stream-badge offline';
             label.textContent = 'Offline';
-            const lastDate = lastLiveMap[ch.toLowerCase()];
-            if (lastLiveEl) {
-              lastLiveEl.textContent = lastDate ? `Last live: ${twitchTimeAgo(lastDate)}` : '';
-            }
+            if (lastLiveEl) lastLiveEl.textContent = info.lastLive ? `Last live: ${twitchTimeAgo(info.lastLive)}` : '';
           }
         });
       } catch (_) { }
